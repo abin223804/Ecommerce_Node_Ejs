@@ -1,0 +1,337 @@
+<%- include ('../layouts/adminHeader.ejs') %>
+
+
+   <!-- Dashboard -->
+   <li class="menu-item ">
+    <a href="dashboard" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-home-circle"></i>
+      <div data-i18n="Analytics">Dashboard</div>
+    </a>
+  </li>
+  
+  <li class="menu-item">
+    <a href="user" class="menu-link">
+      
+      <i class="menu-icon tf-icons bx bxs-user-detail"></i>
+      <div data-i18n="Basic">User List</div>
+    </a>
+  </li>
+  
+  <li class="menu-item">
+    <a href="adminProduct" class="menu-link">
+      
+      <i class="menu-icon tf-icons bx bxs-florist"></i>
+      <div data-i18n="Basic">Product Details</div>
+    </a>
+  </li>
+  
+  
+  <li class="menu-item active">
+    <a href="adminCategory" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-table"></i>
+      <div data-i18n="Analytics">Category</div>
+    </a>
+  </li>
+  
+  
+  <li class="menu-item ">
+    <a href="offer" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-gift"></i>
+      <div data-i18n="Analytics">Offers</div>
+    </a>
+  </li>
+    
+  <li class="menu-item ">
+    <a href="loadbanner" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-collection"></i>
+      <div data-i18n="Analytics">Banner</div>
+    </a>
+  </li>
+
+  <li class="menu-item ">
+    <a href="orderReport" class="menu-link">
+      <i class="menu-icon tf-icons bx bx-collection"></i>
+      <div data-i18n="Analytics">Order Report</div>
+    </a>
+  </li>
+
+
+
+
+  
+  <li class="menu-item">
+    <a
+      href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+      target="_blank"
+      class="menu-link"
+    >
+      <i class="menu-icon tf-icons bx bx-"></i>
+      <div data-i18n="Support"></div>
+    </a>
+  </li>
+  <li class="menu-item">
+    <a
+      href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+      target="_blank"
+      class="menu-link"
+    >
+      <i class="menu-icon tf-icons bx bx-"></i>
+      <div data-i18n="Documentation"></div>
+    </a>
+  </li>
+</ul>
+</aside>
+<!-- / Menu -->
+
+<!-- Layout container -->
+<div class="layout-page">
+<!-- Navbar -->
+
+<nav
+  class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+  id="layout-navbar"
+>
+  <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+      <i class="bx bx-menu bx-sm"></i>
+    </a>
+  </div>
+
+  <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+   
+
+    <ul class="navbar-nav flex-row align-items-center ms-auto">
+      
+      </li>
+
+      <!-- User -->
+      <li class="nav-item navbar-dropdown dropdown-user dropdown">
+        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+          <div class="avatar avatar-online">
+            <img src="/admin/assets/img/avatars/winkel.jpg" alt class="w-px-40 h-auto rounded-circle" />
+          </div>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="#">
+              <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                  <div class="avatar avatar-online">
+                    <img src="/admin/assets/img/avatars/winkel.jpg" alt class="w-px-40 h-auto rounded-circle" />
+                  </div>
+                </div>
+                <div class="flex-grow-1">
+                  <span class="fw-semibold d-block">ABIN</span>
+                  <small class="text-muted">Admin</small>
+                </div>
+              </div>
+            </a>
+          </li>
+         
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/admin/adminLogout">
+              <i class="bx bx-power-off me-2"></i>
+              <span class="align-middle">Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!--/ User -->
+    </ul>
+  </div>
+</nav>
+
+<!-- / Navbar -->
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container-xxl flex-grow-1 container-p-y">
+
+      <br><br>
+      <div class="">
+          <form action="adminCategory" method="post">
+              <div class="input-group">
+                  <input type="text" class="form-control" name="category" placeholder="Add Category"
+                      aria-label="Recipient's username" aria-describedby="button-addon2" />
+                  <button class="btn btn-outline-primary" type="submit" id="button-addon2">Add</button>
+              </div>
+              <%
+                  if(typeof message !== 'undefined'){ %>
+                      <h4 style="color: rgb(237, 61, 61);"><%= message %></h4>
+                 <% } %>
+          </form>
+      </div>
+      <!--  -->
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> </h4>
+
+
+      <div class="card">
+          <h5 class="card-header">Category List</h5>
+          <div class="table-responsive text-nowrap">
+              <table class="table" id="category">
+                  <thead>
+
+                  </thead>
+                  <thead>
+                      <th>SI NO</th>
+                      <th>category</th>
+                      <th>Action</th>
+                  </thead>
+                  <tbody>
+                      <% if(category.length>0) { %>
+                          <% for(i=0;i< category.length;i++) { %>
+                              <tr>
+                                  <th>
+                                      <%= i+1 %>
+                                  </th>
+                                  <td>
+                                      <%= category[i].name %>
+                                  </td>
+                                 
+                                  <td>
+
+
+                                      <div class="dropdown">
+                                          <% if(category[i].isAvailable) { %>
+                                              <button class="btn  btn-outline-danger" data-toggle="modal"
+                                                  style="width: 90px;" data-target="#exampleModalCenter"
+                                                  onclick="del('<%= category[i]._id %>')">Unlist</button>
+                                              
+                                                  
+                                                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ Edit
+</button>
+<tbody>
+  
+<!-- Modal -->
+<form method="post" action="/editCategory">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="category" value=" <%= category[i].name %>" class="form-control" name="" value=""  placeholder="EditCategory"
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a type="submit" method="post" href="/admin/editCategory" class="btn btn-primary">Save changes></a> 
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+                                        
+                                                  </td>
+
+                                                  <!-- Modal -->
+
+
+<!-- Modal -->
+
+
+
+
+
+
+
+
+                                              <% } else { %>
+                                                  <button class="btn  btn-outline-success"
+                                                      data-toggle="modal" style="width: 90px;"
+                                                      data-target="#exampleModalCenter"
+                                                      onclick="del('<%= category[i]._id %>')">List</button>
+                                                  <a id="<%= category[i]._id %>"
+                                                      href="/admin/listCategory?id=<%= category[i]._id %> "></a>
+
+                                                  <% } %>
+
+                                      </div>
+                                  </td>
+
+                              </tr>
+                             
+
+                              <% }} else { %>
+
+                                  <!-- <tr>
+                     
+                  </tr> -->
+
+                                  <tr>
+                                      <td colspan="5">Category Not Found</td>
+                                  </tr>
+                                  <%}%>
+
+
+
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+
+      <!-- confirm box  -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLongTitle">Confirm Block</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Are you sure want to block ?</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="save()">Block</button>
+</div>
+</div>
+</div>
+</div>
+<!-- /confirm -->
+
+<script>
+  var val
+  function del(value) {
+      val = value
+      console.log(val);
+  }
+  function save() {
+      document.getElementById(val).click()
+      console.log(`true ${val}`);
+  }
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+crossorigin="anonymous"></script>
+<script defer src="https://cdn.crop.guide/loader/l.js?c=QRHFGJ"></script>
+
+
+
+
+<%- include ('../layouts/adminFooter.ejs') %>

@@ -1,0 +1,549 @@
+<%- include ('../layouts/adminHeader.ejs') %>
+
+
+
+ 
+          <!-- Dashboard -->
+          <li class="menu-item active">
+            <a href="dashboard" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home-circle"></i>
+              <div data-i18n="Analytics">Dashboard</div>
+            </a>
+          </li>
+          
+          <li class="menu-item">
+            <a href="user" class="menu-link">
+              
+              <i class="menu-icon tf-icons bx bxs-user-detail"></i>
+              <div data-i18n="Basic">User List</div>
+            </a>
+          </li>
+          
+          <li class="menu-item">
+            <a href="adminProduct" class="menu-link">
+              
+              <i class="menu-icon tf-icons bx bxs-florist"></i>
+              <div data-i18n="Basic">Product Details</div>
+            </a>
+          </li>
+          
+          
+          <li class="menu-item">
+            <a href="adminCategory" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-table"></i>
+              <div data-i18n="Analytics">Category</div>
+            </a>
+          </li>
+          
+          
+          <li class="menu-item ">
+            <a href="offer" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-gift"></i>
+              <div data-i18n="Analytics">Offers</div>
+            </a>
+          </li>
+            
+          <li class="menu-item ">
+            <a href="loadbanner" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-collection"></i>
+              <div data-i18n="Analytics">Banner</div>
+            </a>
+          </li>
+
+          <li class="menu-item ">
+            <a href="orderReport" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-collection"></i>
+              <div data-i18n="Analytics">Order Report</div>
+            </a>
+          </li>
+          
+
+          <li class="menu-item ">
+            <a href="/admin/salesReport"" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-collection"></i>
+              <div data-i18n="Analytics">Sales Report</div>
+            </a>
+          </li>
+          
+          <!-- <li class="menu-item">
+            <a href="javascript:void(0)" class="menu-link " id="dark" onclick="myFunction()">
+              <i class="menu-icon tf-icons bx bx-copy"></i>
+              <div>dark-mode</div>
+            </a>
+          </li> -->
+
+          
+          <!-- Misc -->
+          <li class="menu-header small text-uppercase"><span class="menu-header-text"></span></li>
+          <li class="menu-item">
+            <a
+              href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+              target="_blank"
+              class="menu-link"
+            >
+              <i class="menu-icon tf-icons bx bx-"></i>
+              <div data-i18n="Support"></div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a
+              href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+              target="_blank"
+              class="menu-link"
+            >
+              <i class="menu-icon tf-icons bx bx-"></i>
+              <div data-i18n="Documentation"></div>
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- / Menu -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Navbar -->
+
+        <nav
+          class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+          id="layout-navbar"
+        >
+          <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+              <i class="bx bx-menu bx-sm"></i>
+            </a>
+          </div>
+
+          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+            <!-- Search -->
+            
+            <!-- /Search -->
+
+            <ul class="navbar-nav flex-row align-items-center ms-auto">
+              <!-- Place this tag where you want the button to render. -->
+              <li class="nav-item lh-1 me-3">
+                <!-- <a
+                  class="github-button"
+                  href="https://github.com/themeselection/sneat-html-admin-template-free"
+                  data-icon="octicon-star"
+                  data-size="large"
+                  data-show-count="true"
+                  aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+                  ></a
+                > -->
+              </li>
+
+              <!-- User -->
+              <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                  <div class="avatar avatar-online">
+                    <img src="/admin/assets/img/avatars/winkel.jpg" alt class="w-px-40 h-auto rounded-circle " />
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0 me-3">
+                          <div class="avatar avatar-online">
+                            <img src="/admin/assets/img/avatars/winkel.jpg" alt class="w-px-40 h-auto rounded-circle" />
+                          </div>
+                        </div>
+                        <div class="flex-grow-1">
+                          <span class="fw-semibold d-block"> </span>
+                          <small class="text-muted">Admin</small>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  
+                    <div class="dropdown-divider"></div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/admin/adminLogout">
+                      <i class="bx bx-power-off me-2"></i>
+                      <span class="align-middle">Log Out</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!--/ User -->
+            </ul>
+          </div>
+        </nav>
+
+        <!-- / Navbar -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row">
+              <div class="col-lg-8 mb-4 order-0">
+                <div class="card">
+                  <div class="d-flex align-items-end row">
+                    <div class="col-sm-7">
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">Welcome <%= admin.name %>  🎉</h5>
+                        <p class="mb-4">
+                         
+                        </p>
+
+                        
+                      </div>
+                    </div>
+                    <div class="col-sm-5 text-center text-sm-left">
+                      <div class="card-body pb-0 px-0 px-md-4">
+                        <img
+                          src="/admin/assets/img/illustrations/man-with-laptop-light.png"
+                          height="140"
+                          alt="View Badge User"
+                          data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                          data-app-light-img="illustrations/man-with-laptop-light.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4 order-1">
+                <div class="row">
+                  <div class="col-lg-6 col-md-12 col-6 mb-4">
+
+                    
+                    
+                  </div>
+                  <div class="col-lg-6 col-md-12 col-6 mb-4">
+                   
+                  </div>
+                </div>
+              </div>
+              <!-- Total Revenue -->
+              <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                <div class="card">
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card">
+                                <canvas id="myPie"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card">
+                                <canvas id="myChart"></canvas>
+                                
+                            </div>
+                        </div>
+                        <input type="hidden" id="pname" value="<%=pname%>">
+                        <input type="hidden" id="pcount" value="<%=pcount%>">
+                        <input type="hidden" id="category" value="<%=category%>">
+                        <input type="hidden" id="count" value="<%=count%>">
+                    </div>
+                  <!-- <div class="row row-bordered g-0">
+                    <div class="col-md-8">
+                      <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
+                      <div id="totalRevenueChart" class="px-2"></div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card-body">
+                        <div class="text-center">
+                          <div class="dropdown">
+                            <button
+                              class="btn btn-sm btn-outline-primary dropdown-toggle"
+                              type="button"
+                              id="growthReportId"
+                              data-bs-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              2022
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                              <a class="dropdown-item" href="javascript:void(0);">2021</a>
+                              <a class="dropdown-item" href="javascript:void(0);">2020</a>
+                              <a class="dropdown-item" href="javascript:void(0);">2019</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="growthChart"></div>
+                      <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div>
+
+                      <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
+                        <div class="d-flex">
+                          <div class="me-2">
+                            <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
+                          </div>
+                          <div class="d-flex flex-column">
+                            <small>2022</small>
+                            <h6 class="mb-0">$32.5k</h6>
+                          </div>
+                        </div>
+                        <div class="d-flex">
+                          <div class="me-2">
+                            <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
+                          </div>
+                          <div class="d-flex flex-column">
+                            <small>2021</small>
+                            <h6 class="mb-0">$41.2k</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <!--/ Total Revenue -->
+              
+            </div>
+
+            
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="icon-big icon-warning text-center">
+                                        <i class="ti-user"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="numbers">
+                                        <p>Users</p>
+                                        <%=usersCount%>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-reload"></i> total users
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="icon-big icon-success text-center">
+                                        <i class="ti-layout-column3"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="numbers">
+                                        <p>Categories</p>
+                                        <%=totalCategory%>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-calendar"></i> active categories
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="icon-big icon-danger text-center">
+                                        <i class="ti-shopping-cart"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="numbers">
+                                        <p>Total Products</p>
+                                        <%=productCount%>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-timer"></i> whole count
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="icon-big icon-info text-center">
+                                        <i class="ti-gift"></i>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="numbers">
+                                        <p>Total Orders</p>
+                                        <%=showCount%>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="footer">
+                                <hr />
+                                <div class="stats">
+                                    <i class="ti-reload"></i> total orders 
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div> 
+            </div>
+           
+
+            
+
+
+
+
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+                const ctx = document.getElementById('myChart');
+                const name = document.getElementById('pname');
+                const scategory=document.getElementById('scategory')
+                const count = document.getElementById('pcount');
+                const pnames = name.value.split(',');
+                const pcounts = count.value.split(',');
+
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: scategory,
+                        datasets: [{
+                            label: 'sales',
+                            data: pcounts,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+
+                const ctx1 = document.getElementById('myPie');
+                const name1 = document.getElementById('category');
+                const count1 = document.getElementById('count');
+                const category = name1.value.split(',');
+                const countPie = count1.value.split(',');
+
+
+                new Chart(ctx1, {
+                    type: 'pie',
+                    data: {
+                        labels: category,
+                        datasets: [{
+                            label: 'sales',
+                            data: countPie,
+                            borderWidth: 1
+                        }]
+                    },
+                    // options: {
+                    //     scales: {
+                    //         y: {
+                    //             beginAtZero: true
+                    //         }
+                    //     }
+                    // }
+                });
+            </script>
+           
+          </div>
+          <!-- / Content -->
+
+          <!-- Footer -->
+          <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+              <div class="mb-2 mb-md-0">
+                ©
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+               
+                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder"></a>
+              </div>
+              <div>
+                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                <a
+                  href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                  target="_blank"
+                  class="footer-link me-4"
+                  >Documentation</a
+                >
+
+                <a
+                  href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                  target="_blank"
+                  class="footer-link me-4"
+                  >Support</a
+                >
+              </div>
+            </div>
+          </footer>
+          <!-- / Footer -->
+
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+      </div>
+      <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+
+  
+
+  <!-- Core JS -->
+  <!-- build:js assets/vendor/js/core.js -->
+  
+
+  <!-- <script>
+    if (dark) {
+      document.getElementById('dark').click()
+    }
+    function myFunction() {
+      let root = document.documentElement;
+      let images = document.getElementsByTagName('img')
+      root.classList.toggle("dark-mode");
+      for(let x of images){
+      x.classList.toggle("inverted");
+      }
+      if (dark) {
+        dark = 0
+      } else dark = 1
+      console.log(dark);
+    }</script> -->
+
+
+
+
+
+
+
+
+<%- include ('../layouts/adminFooter.ejs') %>

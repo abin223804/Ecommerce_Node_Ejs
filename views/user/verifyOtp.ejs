@@ -1,0 +1,72 @@
+<%-include('../layouts/userHeaders')-%>
+<header>
+  <link type="text/css" rel="stylesheet" href="/css/otp.css" />
+</header>
+
+
+
+
+
+<div class="d-flex justify-content-center align-items-center container">
+  <form action="/verifyOtp" method="POST">
+      <div class="card py-5 px-3">
+
+          <h5 class="m-0">Mobile phone verification</h5><span class="mobile-text">Enter the code we just send on
+              your
+              mobile phone <b class="text-danger">
+                  <%= mobileNo%>
+              </b></span>
+          
+          <div class="d-flex flex-row mt-5"><input type="text" id="otp" name="otp" class="form-control"
+                  autofocus="">
+          </div>
+
+          <span id="timer">1:00</span>
+          <a href="/verifyOtp"
+
+          <div class="mb-4 d-flex justify-content-center  btn-lg">
+            <input type="hidden" name="checkOtp" value="<%= otp %>">
+            <input type="hidden" name="user" value="<%= user %>">
+
+              <button class=" btn login-btn m-auto px-5 py-1 rounded-pill fs-3 fw-bold" type="submit"
+                  name="submit">Submit</button>
+          </div>
+
+          <div class="text-center mt-5"><span class="d-block mobile-text">Don't receive the code?</span><span class="font-weight-bold text-danger cursor">Resend</span></div>
+
+      </div>
+      
+  </form>
+
+</div>
+
+<script>
+  // Set the countdown duration in seconds
+  const countdownDuration = 60;
+  
+  // Get the timer element
+  const timerElement = document.getElementById('timer');
+  const buttonElement = document.getElementById('bId');
+  
+  // Start the countdown timer
+  let countdown = countdownDuration;
+  const intervalId = setInterval(() => {
+    countdown--;
+    const minutes = Math.floor(countdown / 60);
+    const seconds = countdown % 60;
+    timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    if (countdown === 0) {
+      // Stop the countdown timer
+      clearInterval(intervalId);
+  
+      // Hide the timer element
+      timerElement.style.display = 'none';
+      buttonElement.style.display = 'none';
+  
+      // Show the "Resend OTP" link
+      const resendLinkElement = document.getElementById('resend-link');
+      resendLinkElement.classList.remove('d-none');
+    }
+  }, 1000);
+  </script>
+<%-include("../layouts/userfooter.ejs")-%>

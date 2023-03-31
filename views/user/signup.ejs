@@ -1,0 +1,166 @@
+<%- include ('../layouts/userHeaders.ejs') %>
+
+
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap" > 
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-6" >
+              <div class="login_box_img">
+                  <img class="img-fluid" src="https://i.pinimg.com/564x/6e/54/f5/6e54f5cb59b41c31e3c6bd584f5752f7.jpg" alt="">
+                  <!-- <div class="hover">
+                      <h4></h4>
+                      <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+                      <a class="primary-btn" href="registration.html">Create an Account</a>
+                  </div> -->
+              </div>
+          </div>
+          <div class="col-lg-6" >
+              <div class="login_form_inner">
+                  <h3>Please Sign up</h3>
+                  <form class="row login_form" action="/signup" method="POST" id="contactForm" novalidate="novalidate">
+                      <div class="col-md-12 form-group">
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                          <span id="name1" class="text-danger"></span>
+                  </div>
+                      <div class="col-md-12 form-group">
+                          <input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                          <span id="email1" class="text-danger"></span>
+                      </div>
+
+                      <div class="col-md-12 form-group">
+                          <input type="text" class="form-control" id="mno" name="mno" placeholder="Mobile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                          <span id="mobile" class="text-danger"></span>
+                      </div>
+
+
+                      <div class="col-md-12 form-group">
+                          <input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                          <span id="passwords" class="text-danger"></span>
+                      </div>
+                      <div class="col-md-12 form-group">
+                          <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                          <span id="conpasswords" class="text-danger"></span>
+                      </div>
+
+                      <% if(typeof message !=='undefined' ) { %>
+                          <p style="color: rgb(255, 0, 0); font-weight: bold">
+                            <%= message %>
+                          </p>
+                          <% } %>
+
+
+                      <div class="col-md-12 form-group">
+                          <div class="creat_account">
+                              <input type="checkbox" id="f-option2" name="selector">
+                              <label for="f-option2">Keep me logged in</label>
+                          </div>
+                      </div>
+                      <!-- <div class="">
+                          <button type="submit" value="submit" onclick="return validation()" class="">Register</button>
+                          <a href="#"></a>
+                      </div> -->
+                      <div >
+                        <button type="submit" value="submit" onclick="return validation()" class="btn btn-success">Register</button>
+                      </div>
+                       
+              </div>
+              
+                      
+          </div>
+          <h6  style="color: red; padding-right: 150px; padding-bottom: 50px; padding-left: 720px;" >Allready have an account <a href="/login" > LOGIN  </a> here</h6>
+         
+      </div>
+      </div>
+      
+</section>
+
+
+
+<script type="text/javascript">
+
+  function validation() {
+    var user = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var mno = document.getElementById('mno').value;
+    var password = document.getElementById('password').value;
+    var password2 = document.getElementById('password2').value;
+
+
+
+
+    if (user == "") {
+      document.getElementById('name1').innerHTML =
+        "Please fill the username field";
+      return false;
+    }
+    if ((user.length <= 2) || (user.length > 20)) {
+      document.getElementById('name1').innerHTML =
+        "User length must be between 3 and 20";
+      return false;
+    }
+    if (!isNaN(user)) {
+      document.getElementById('name1').innerHTML =
+        "Only characters are allowed";
+      return false;
+    }
+
+
+    if (email == "") {
+      document.getElementById('email1').innerHTML =
+        "please fill the email field";
+      return false;
+    }
+    if (email.indexOf('@') <= 0) {
+      document.getElementById('email1').innerHTML =
+        "Invalid '@' position ";              
+      return false;
+    }
+    if ((email.charAt(email.length - 4) != '.') &&
+      (email.charAt(email.length - 3) != '.')) {
+      document.getElementById('email1').innerHTML =
+        "Invalid '.' position ";
+      return false;
+    }
+
+    if (mno == "") {
+      document.getElementById('mobile1').innerHTML =
+        "please fill the mobile number field";
+      return false;
+    }
+    if (isNaN(mno)) {
+      document.getElementById('mobile1').innerHTML =
+        "Must write digits only not characters";
+      return false;
+    }
+    if (mno.length != 10) {
+      document.getElementById('mobile1').innerHTML =
+        "Must be 10 digits ";
+      return false;
+    }
+
+
+    if (password == "") {
+      document.getElementById('passwords').innerHTML =
+        "please fill the password field";
+      return false;
+    }
+    if ((password.length < 5) || (password.length > 10)) {
+      document.getElementById('passwords').innerHTML =
+        "Password length must be between 5 and 10";
+      return false;
+    }
+
+    if (password2 == "") {
+      document.getElementById('conpasswords').innerHTML =
+        "please fill the confirm password field";
+      return false;
+    }
+    if (password2 != password) {
+      document.getElementById('conpasswords').innerHTML =
+        "Password are not matching";
+      return false;
+    }
+  }
+</script>
+<%- include ('../layouts/userFooter.ejs') %>

@@ -1,0 +1,143 @@
+
+<% if(id) { %>
+    <%- include('../layouts/userLoggedinHeader') %>
+    <% }else { %>
+    <%- include('../partials/userHeaders') %>
+    <% } %>
+<style>
+    .btn {
+        cursor: pointer;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+        border-radius: 0px;
+        -webkit-box-shadow: 0px 24px 36px -11px rgb(0 0 0 / 9%);
+        -moz-box-shadow: 0px 24px 36px -11px rgba(0, 0, 0, 0.09);
+        box-shadow: 0px 24px 36px -11px rgb(0 0 0 / 9%);
+    }
+</style>
+<section>
+<div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            
+          <h1 class="mb-0 bread">Order Details</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</section><br><br><br><br><br>
+    <section>
+<div class="dashboard">
+    <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-12 col col-md-8 col-sm-6 col-xs-2">
+        
+        <h3 class="h3order"></h3>
+        <br>
+          <table id="myTable" class="table	">
+              <thead>
+                <tr>
+                  <th >OrderId</th>
+                 <th> </th>
+                  <th >Time</th>
+                  <th >Payment</th>
+                  <th >Status</th>
+                  <th >Actions</th>  
+                  <th>View Order</th>
+                  
+                </tr>
+              </thead>
+              <% if(id){ %> 
+              <% for(let key of Order){ %>
+                <% if(Order){ %> 
+                
+              <tbody>  
+                <tr>
+                    <td><%= key._id %></td>
+                    <td><%= key.name %></td>
+                    <td><%= key.createdAt.toDateString() %></td>
+                    <td><%= key.payment %></td>
+                    <td><i class="m-r-10 mdi mdi-account-off text-success" style="width: 100px;"><%= key.status %></i></td>
+                  <td>
+                    <% if(key.status ==='Delivered'){ %>
+                      <p style="color:crimson;font-weight: bolder;">Delivered</p>
+                    <% }else if(key.status === 'Rqstd'){ %>
+                      <p style="color:crimson;font-weight: bolder;">Return Requested</p>
+                    <% }else if(key.status === 'Returned'){ %>
+                      <p style="color:crimson;font-weight: bolder;">Return Conformed</p>
+                    <% }else if((key.status != 'Canceled')  && (key.status != 'Return Request Canceled')){ %>
+                      <!-- <button class="btn btn btn-danger -->
+             <!-- <button data-toggle="modal"  data-target="#exampleModal" onclick="del('<%= key._id %>')" >   <a href="/calcelOrder?id=<%= key._id %>"  class="btn btn-danger" >Cancel Order</a></button> -->
+             <button class="btn btn-danger"   data-toggle="modal"  data-target="#exampleModal"
+             onclick="del('<%= key._id %>')">Cancel Order</button>
+           <a id="<%= key._id %>"
+             href="/calcelOrder?id=<%= key._id %> "></a>
+                  <% }else{} %>
+                  </td>
+                  <td><% if(key.status != 'Canceled') {%><a href="/orderDetails?id=<%= key._id %>" class="btn btn-info">View Details</a><% }else{}%></td>
+                 
+                </tr>
+              </tbody>
+              <% }else{ %> 
+                <p>No order has been made yet.</p>
+                <% } %> 
+              <% } %>
+            </table>
+      
+
+    
+
+        <% }else{ %> 
+            <h4>please login....</h4>
+        <% } %> 
+        <!-- <a href="/shop" class="btn btn-primary"><span>GO SHOP  </span><i class="icon-long-arrow-right"></i></a> -->
+    </div>
+</div>
+</div>
+
+</div>
+</section>
+<br><br><br>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="save()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var val;
+  function del(value) {
+      val = value
+      console.log(val);
+  }
+  function save() {
+      document.getElementById(val).click()
+      console.log(`true ${val}`);
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+crossorigin="anonymous"></script>
+
+    <%- include('../layouts/userFooter') %>

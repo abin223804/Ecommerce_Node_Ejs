@@ -1,0 +1,173 @@
+
+
+<%-include('../layouts/userloggedinHeader.ejs')  %> 
+
+<head>
+    <link type="text/css" rel="stylesheet" href="css/styleDeshbord.css">
+    <link type="text/css" rel="stylesheet" href="css/skins/skin-demo-10.css">
+</head>
+
+<main class="main">
+
+    <div class="page-content">
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                   
+                        <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                            
+                            
+
+                            
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" id="tab-mullAddress-link" data-toggle="tab"
+                                    href="#tab-mullAddress" role="tab" aria-controls="tab-mullAddress"
+                                    aria-selected="false">Show Adresses</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
+                                    role="tab" aria-controls="tab-account" aria-selected="false">Account
+                                    Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout"></a>
+                            </li>
+                        </ul>
+                    </aside><!-- End .col-lg-3 -->
+
+                   
+
+                            
+                                  
+                           
+
+                            <div class="tab-pane fade" id="tab-mullAddress" role="tabpanel"
+                                aria-labelledby="tab-mullAddress-link">
+
+                                <p>The following addresses will be used on the checkout page by default.</p>
+
+                                <div class="row">
+                                    <%if(userAddress.length>0){
+                                        for(let key of userAddress){%>
+
+
+                                        <div class="col-lg-6">
+                                            <div class="card card-dashboard">
+
+                                                <div class="card-body">
+                                                    <h3 class="card-title">Address</h3>
+                                                    <p>
+                                                        <%= key.firstname %>
+                                                            <%=key.lastname%><br>
+                                                                <%= key.address %> <br>
+                                                                    <%= key.country %><br>
+                                                                        <%= key.state %><br>
+                                                                            <%= key.city %> ,
+                                                                                <%= key.zip %><br>
+                                                                                    <%= key.phone %><br>
+                                                                                        <!-- End .card-title -->
+
+
+                                                                                        
+                                                                                                <a href="/deleteAddress?id=<%= key._id %>"><button style="background-color: red; color: aliceblue;">delete</button></a>
+
+                                                    </p>
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .card-dashboard -->
+                                        </div><!-- End .col-lg-6 -->
+                                        <%}}else{%>
+
+                                            <div class="col-lg-6">
+                                                <div class="card card-dashboard">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title"> Address</h3>
+                                                        <!-- End .card-title -->
+
+                                                        <p>You have not set up this type of address yet.<br>
+                                                        </p>
+                                                    </div><!-- End .card-body -->
+                                                </div><!-- End .card-dashboard -->
+                                            </div><!-- End .col-lg-6 -->
+                                            <%}%>
+
+                                </div><!-- End .row -->
+                            </div><!-- .End .tab-pane -->
+
+                            <div class="tab-pane fade" id="tab-account" role="tabpanel"
+                                aria-labelledby="tab-account-link">
+                                <form action="changePassWord" method="post">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label>First Name *</label>
+                                            <input type="text" class="form-control" name="name" value="<%=user.name%>" required>
+                                        </div><!-- End .col-sm-6 -->
+
+                                        <div class="col-sm-6">
+                                            <label>phone *</label>
+                                            <input type="text" class="form-control" name="number" value="<%=user.mobile%>" required>
+                                        </div><!-- End .col-sm-6 -->
+                                    </div><!-- End .row -->
+
+                                    <!-- <label>Display Name *</label>
+                                    <input type="text" class="form-control" required>
+                                    <small class="form-text">This will be how your name will be displayed in the
+                                        account section and in reviews</small> -->
+
+                                    <label>Email address *</label>
+                                    <input type="email" class="form-control" name="email" value="<%=user.email%>" required>
+
+                                    <label>Current password (leave blank to leave unchanged)</label>
+                                    <input type="password" name="password" class="form-control">
+
+                                    <label>New password</label>
+                                    <input type="password" name="password1" class="form-control" required>
+
+                                    <label>Confirm new password</label>
+                                    <input type="password" name="password2" class="form-control mb-2" required>
+
+                                    <!-- <button type="submit" class="btn btn-outline-primary-2">
+                                        <div>SAVE CHANGES</div>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </button> -->
+
+                                    <button type="submit" style="background-color: blueviolet; color: white;"> SAVE CHANGES </button>
+
+
+                                </form>
+                            </div><!-- .End .tab-pane -->
+                        </div>
+                    </div><!-- End .col-lg-9 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->
+
+
+<script>
+    $('.clicked').on('click', function (e) {
+                            e.preventDefault();
+                            var self = $(this);
+                            console.log(self.data('title'));
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: "You want to delete the address?",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, Delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Address has been deleted.',
+                                        'success'
+                                    )
+                                    location.href = self.attr('href');
+                                }
+                            })
+                        })
+</script>
+  <%- include('../layouts/userfooter') %>

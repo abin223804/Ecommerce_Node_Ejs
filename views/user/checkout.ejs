@@ -1,0 +1,430 @@
+
+<% if(id) { %>
+    <%- include('../layouts/userLoggedinHeader') %>
+    <% }else { %>
+    <%- include('../layouts/userHeaders') %>
+    <% } %>
+
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Checkout</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="/userHome">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/checkOut">Checkout</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+    
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <!-- <div class="returning_customer">
+                <div class="check_title">
+                    <h2>Returning Customer? <a href="#">Click here to login</a></h2>
+                </div>
+                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
+                    customer, please proceed to the Billing & Shipping section.</p>
+                <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                    <div class="col-md-6 form-group p_star">
+                        <input type="text" class="form-control" id="name" name="name">
+                        <span class="placeholder" data-placeholder="Username or Email"></span>
+                    </div>
+                    <div class="col-md-6 form-group p_star">
+                        <input type="password" class="form-control" id="password" name="password">
+                        <span class="placeholder" data-placeholder="Password"></span>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <button type="submit" value="submit" class="primary-btn">login</button>
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option" name="selector">
+                            <label for="f-option">Remember me</label>
+                        </div>
+                        <a class="lost_pass" href="#">Lost your password?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="cupon_area">
+                <div class="check_title">
+                    <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
+                </div>
+                <input type="text" placeholder="Enter coupon code">
+                <a class="tp_btn" href="#">Apply Coupon</a>
+            </div> -->
+    
+            <!-- <ul class="list">
+                <li class="col-md-3 form-group p_star"> -->
+                    <div class="container">
+                        <div class="row d-flex flex-row-reverse">
+                            
+                            <div class="col-12 col-sm-6 col-md-4">
+                    <form action="/addCoupon" method="post">
+                    <div class="cupon_text d-flex justify-content-between my-4">
+                      
+                        <input type="text" placeholder="Coupon Code" class="form-control " name="offer">
+                      
+                        <button class="btn btn-outline-warning " type="submit" style="margin-left: 1.4rem;" >Apply</button>
+                    
+                     </div>
+                    </form>
+    
+                    <% if(nocoupon) { %>
+                        <p style="color: red">INVALID COUPON</p>
+                        <% } %>
+                        
+                        
+                    </div>
+                    
+                    </div>
+                    </div>
+                 <!-- </li>
+    
+                </ul> -->
+    
+            
+             <form action="/checkout" method="post">
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Billing Details</h3>
+    
+                       <%   if(addSelect!=null){  %>
+    
+                      
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="first" name="firstname"  value="<%= addSelect.firstname %>">
+                                
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="last" name="lastname" value="<%= addSelect.lastname %>">
+                                
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="number" name="phone"  value="<%= addSelect.phone %>">
+                              
+                            </div>
+    
+    
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="number" name="address"  value="<%= addSelect.address %>">
+                              
+                            </div>
+                           
+    
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="country"  value="<%= addSelect.country %>">
+                               
+                            </div>
+    
+                            
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="state"  value="<%= addSelect.state %>">
+                               
+                            </div>
+                            
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="city" name="city"  value="<%= addSelect.city %>">
+                                
+                            </div>
+                        
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP"  value="<%= addSelect.zip %>">
+                            </div>
+    
+                            <div class="row">
+                                <%if(userAddress.length>0){
+                                    for(let key of userAddress){%>
+                                    <a href="/checkout?addressid=<%=key._id%>">
+                                        <div class="col-md-6 form-group p_star">
+                                            <a href="/checkout?addressid=<%=key._id%>">
+                                                <div class="card card-dashboard">
+                        
+                                                    <a href="/checkout?addressid=<%=key._id%>">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title">Shipping
+                                                                Address</h3>
+                                                            <!-- End .card-title -->
+                        
+                                                            <p>
+                                                                <%= key.firstname %>
+                                                                    <%=key.lastname%><br>
+                                                                        <%= key.address %> , <%=
+                                                                                key.address2 %>
+                                                                                <br>
+                                                                          <%= key.city %>
+                                                                              , <%=
+                                                                                  key.state
+                                                                                  %><br>
+                                                                                  <%= key.country
+                                                                                      %>
+                                                                                      <br>
+                                                                                      <%= key.zip
+                                                                                          %>
+                                                                                          <br>
+                                                                                          <%= key.phone
+                                                                                              %>
+                                                                                              <br>
+                                                                                              <br>
+                                                                                              <!-- <a href="#">Edit <i class="icon-edit"></i></a> -->
+                                                                                              <a
+                                                                                                  href="/deleteaddress?id=<%= key._id %>"><i class="icon-close"></i>
+                                                                                                  delete</a>
+                                                            </p>
+                                                        </div>
+                                                    </a>
+                                                    <!-- End .card-body -->
+                                                </div>
+                                            </a>
+                                            <!-- End .card-dashboard -->
+                                        </div>
+                                    </a>
+                                    <!-- End .col-lg-6 -->
+                                    <%}}else{%>
+                        
+                                        <div class="col-lg-6">
+                                            <a href="">
+                                                <div class="card card-dashboard">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">Shipping Address
+                                                        </h3>
+                        
+                                                        <p>You have not set up this type of
+                                                            address yet.<br>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <%}%>
+                            </div><!-- End .row -->
+    
+                           
+                            <!-- <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <input type="checkbox" id="f-option2" name="selector">
+                                    <label for="f-option2">Create an account?</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <div class="creat_account">
+                                    <h3>Shipping Details</h3>
+                                    <input type="checkbox" id="f-option3" name="selector">
+                                    <label for="f-option3">Ship to a different address?</label>
+                                </div>
+                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
+                            </div> -->
+                        
+    
+                    <% }else{ %> 
+    
+                        
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="first" name="name">
+                                <span class="placeholder" data-placeholder="First name"></span>
+                            </div>
+                            <div class="col-md-6 form-group p_star">
+                                <input type="text" class="form-control" id="last" name="name">
+                                <span class="placeholder" data-placeholder="Last name"></span>
+                            </div>
+                            
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="number" name="number">
+                                <span class="placeholder" data-placeholder="Phone number"></span>
+                            </div>
+                           
+                            
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="add1" name="add1">
+                                <span class="placeholder" data-placeholder="Address"></span>
+                            </div>
+                            
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="city" name="city">
+                                <span class="placeholder" data-placeholder="Town/City"></span>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" id="city" name="city">
+                                <span class="placeholder" data-placeholder="Country"></span>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+                            </div>
+    
+                            <div class="row">
+                                <%if(userAddress.length>0){
+                                    for(let key of userAddress){%>
+                                    <a href="/checkout?addressid=<%=key._id%>">
+                                        <div class="col-md-6 form-group p_star">
+                                            <a href="/checkout?addressid=<%=key._id%>">
+                                                <div class="card card-dashboard">
+                        
+                                                    <a href="/checkout?addressid=<%=key._id%>">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title">Shipping
+                                                                Address</h3>
+                                                            <!-- End .card-title -->
+                        
+                                                            <p>
+                                                                <%= key.firstname %>
+                                                                    <%=key.lastname%><br>
+                                                                        <%= key.address %> , <%=
+                                                                                key.address2 %>
+                                                                                <br>
+                                                                                <%= key.city %>
+                                                                                    , <%=
+                                                                                        key.state
+                                                                                        %><br>
+                                                                                        <%= key.country
+                                                                                            %>
+                                                                                            <br>
+                                                                                            <%= key.zip
+                                                                                                %>
+                                                                                                <br>
+                                                                                                <%= key.phone
+                                                                                                    %>
+                                                                                                    <br>
+                                                                                                    <br>
+                                                                                                    <!-- <a href="#">Edit <i class="icon-edit"></i></a> -->
+                                                                                                    <a
+                                                                                                        href="/deleteaddress?id=<%= key._id %>"><i
+                         class="icon-close"></i>
+                                                                                                        delete</a>
+                                                            </p>
+                                                        </div>
+                                                    </a>
+                                                    <!-- End .card-body -->
+                                                </div>
+                                            </a>
+                                            <!-- End .card-dashboard -->
+                                        </div>
+                                    </a>
+                                    <!-- End .col-lg-6 -->
+                                    <%}}else{%>
+                        
+                                        <div class="col-lg-6">
+                                            <a href="">
+                                                <div class="card card-dashboard">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">Shipping Address
+                                                        </h3>
+                        
+                                                        <p>You have not set up this type of
+                                                            address yet.<br>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <%}%>
+                            </div><!-- End .row -->
+                           
+    
+                        <% } %> 
+        
+    
+                    </div>
+    
+                    
+    
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                <li>
+                                    
+                            
+                                 </li>
+    
+                                 <%= qty %>
+    
+                                 <li><a href="#">Product <span>Total</span></a></li>
+    
+                                 <% for(let key of cartProducts.item){ %>
+    
+    
+                                <li><a href="#"><%= key.productId.name %> <span class="middle"> x <%= key.qty %></span> <span class="last"> ₹ <%= key.productId.price*key.qty %></span></a></li>
+                                <%}%>
+                                
+                            </ul>
+    
+                            
+                            
+                            <div class="payment_item">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option5" name="payment" value="cod" checked >
+                                    <label for="f-option5">Cash On Delivery</label>
+                                    <div class="check"></div>
+                                </div>
+    
+                                
+    
+                                <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
+                                    Store Postcode.</p>
+                                </div>
+    
+                                <%= offer.name %>
+    
+                                <%= offer.discount %>%
+    
+                            <div class="payment_item active">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option6" name="payment" value="RazorPay">
+                                    <label for="f-option6">Razorpay </label>
+                                    <img src="img/product/card.jpg" alt="">
+                                    <div class="check"></div>
+                                </div>
+                                <p>Pay via Razorpay; you can pay with your credit card if you don’t have a Razorpay
+                                    account.</p>
+                            </div>
+                            <table>
+                            <tr class="">
+                                                                            <td>
+                                                                                Coupon applied
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= offer.name %>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="summary-total">
+                                                                            <td>
+                                                                                Discount
+                                                                            </td>
+                                                                            <td>
+                                                                                <%= offer.discount %> %
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="summary-total">
+                                                                            <td>Total:</td>
+                                                                            <td>
+                                                                                <% if(id){ %>
+                                                                                    ₹ <%= couponTotal %>
+                                                                                        <% } %>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+    
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option4" name="selector">
+                                <label for="f-option4">I’ve read and accept the </label>
+                                <a href="#">terms & conditions*</a>
+                            </div>
+                          <button type="submit" class="primary-btn">Place Order</button> 
+                          </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+       
+    </section>
+    <!--================End Checkout Area =================-->
+    
+    
+    
+    
+
+
+<%- include('../layouts/userFooter') %>

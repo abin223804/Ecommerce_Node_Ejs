@@ -1,0 +1,71 @@
+<%- include('../layouts/adminHeader') %>
+
+
+<div class="container mt-3" style="padding-top: 10vh; z-index: 3  ;">
+   
+    
+  <table id="myTab" class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Quantity Sold</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+          <%for(let i=1;i<=product.length;i++){%>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              
+              <img
+                  src="/admin/multer/img/<%=product[i-1].image[0]%>"
+                  alt=""
+                  style="width: 45px; height: 45px"
+                  class="rounded-circle"
+                  />
+                  
+              <div class="ms-3">
+                <p class="fw-bold mb-1 ml-3"><%= product[i-1].name %></p>
+                <p class="text-muted mb-0 ml-3">Price: ₹<%= product[i-1].price %></p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1"><%= product[i-1].category %></p>
+            <p class="text-muted mb-0">Quantity:<%= product[i-1].quantity %></p>
+          </td>
+          <td>
+              <div>
+                  <p class="text-muted mb-0 ml-3"><%= product[i-1].sales %></p>
+              </div>
+          </td>
+          <td>
+              <p class="text-muted mb-0 ml-3">₹<%= product[i-1].price*product[i-1].sales %></p>
+          </td>
+          
+        </tr>
+        <%}%>
+        
+      </tbody>
+      <footer>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </footer>
+    </table>
+    </div>
+    <script>
+      $(document).ready(function() {
+      $('#myTab').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      } );
+  } )
+      </script>
+
+<%- include('../layouts/adminFooter') %>

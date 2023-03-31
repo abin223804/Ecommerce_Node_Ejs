@@ -1,0 +1,313 @@
+<% if(id) { %>
+    <%- include('../layouts/userLoggedinHeader') %>
+    <% }else { %>
+    <%- include('../layouts/userHeaders') %>
+    <% } %>
+   
+
+
+
+<!--================Cart Area =================-->
+<% if(cartProducts.totalPrice){%>
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <% for(let key of cartProducts.item) {%>
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex" style="width: 15rem;">
+                                            <img class="img-fluid" src="/admin/multer/img/<%= key.productId.image[0] %>" alt="" style="width: 100%" >
+                                        </div>
+                                        <div class="media-body">
+                                            <p><h2><%= key.productId.name %></h2></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>₹<%= key.productId.price %></h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <input type="hidden" value="<%= key.productId._id%>">
+                                        
+                                        <input type="number"  name="qty" class="input-text qty" min="1" max="key.productId.quantity" value="<%=key. qty %>"  required style="height:max-content" >
+                                                         
+                                    </div>                             
+                                </td>
+                                
+
+                            
+                                <td>
+                                    <% if (key.qty >= 1) { %>
+                                        <h5>₹ <%= key.qty*key.productId.price %></h5>
+                                    <% } %>
+                                </td>
+                                <td style="text-align: right;">
+                                    <button type="" class="btn btn-white" data-toggle="modal" data-target="#myModal"> <i class="fa fa-close" style="font-size:24px;color:#fb0000"></i></button> 
+                                    <!-- Button to trigger the modal -->
+                        
+                                    <!-- The modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel">Confirm</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                                    <button type="button" class="btn btn-danger" id="yesButton">Yes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                    <!-- Script to handle the 'yes' button click -->
+                                    <script>
+                                        document.getElementById("yesButton").addEventListener("click", function() {
+                                            // Code to execute if user clicks 'Yes'
+                                            // For example, redirect to another page:
+                                            window.location.href = "/deleteCart?id=<%= key.productId._id %>";
+                                        });
+                                    </script>
+                                </td>
+                            </tr>
+                        <% } %>
+                        
+                       
+                        <tr class="bottom_button">
+                            <td>
+                              
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                                <td>
+                                    <h5><h5>Subtotal</h5></h5>
+                                </td>
+                                <% if (cartProducts.totalPrice >= 1) { %>
+                                <td>
+                                    <h5 id="totalCart"> <% if(id){ %>
+                                        ₹ <%= cartProducts.totalPrice %>
+                                        <% } %></h5>
+                                </td>
+                                <% } %>
+                            </td>
+                            
+                          
+                            <td>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                
+                                <div>
+                                    <a class="primary-btn" href="/checkout" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 5px;">proceed to checkout </a>
+                                
+                                </div>
+                            </td>
+                        </tr>
+                       
+                        <% }else{ %>
+                        
+                            <div class="container-fluid ">
+                                <div class="row">
+                                
+                                   <div class="col-md-12">
+                                   
+                                           <div class="card">
+                                       <div class="card-header">
+                                       <!-- <h5>ShoppingCart</h5> -->
+                                       </div>
+                                       <div class="card-body cart">
+                                               <div class="col-sm-12 empty-cart-cls text-center">
+                                                <div style="margin-left: 595px;">
+                                                   <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                                </div>
+                                                <h3><strong>Your Cart is Empty</strong></h3>
+                                                   <h4>Add something to make me happy :)</h4>
+                                                   
+                                                   <a href="/products"><button style="background-color: green; color: white;">continue shopping</button></a>
+    
+                                               
+                                               </div>
+                                       </div>
+                               </div>
+                                       
+                                   
+                                   </div>
+                                
+                                </div>
+                               
+                               </div>
+                               <style>
+                                @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+    
+    body {
+        background-color: #eee;
+        font-family: 'Calibri', sans-serif !important;
+    }
+    
+    .mt-100{
+       margin-top:100px;
+    
+    }
+    
+    
+    .card {
+        margin-bottom: 30px;
+        border: 0;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        letter-spacing: .5px;
+        border-radius: 8px;
+        -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+        box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+    }
+    
+    .card .card-header {
+        background-color: #fff;
+        border-bottom: none;
+        padding: 24px;
+        border-bottom: 1px solid #f6f7fb;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    
+    .card-header:first-child {
+        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    }
+    
+    
+    
+    .card .card-body {
+        padding: 30px;
+        background-color: transparent;
+    }
+    
+    .btn-primary, .btn-primary.disabled, .btn-primary:disabled {
+        background-color: #4466f2!important;
+        border-color: #4466f2!important;
+    }
+                               </style>
+    
+                            
+    
+                            <% } %>
+
+                        
+                   
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <script>
+    const qty = document.querySelectorAll('.qty');
+    
+    const qtyHandler = async(e) => {
+      try {
+        const productId = e.target.parentElement.children[0].value;
+        const data = { qty: e.target.value };
+        
+        // Check if the quantity is less than 1
+        if (data.qty < 1) {
+          throw new Error('Quantity must be greater than or equal to 1');
+        }
+        
+        const response = await fetch(`/editCart?id=${productId}`,{
+          method: 'post',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        
+        const value = await response.json();
+        
+        document.querySelector('#totalCart').innerText = value.totalPrice;
+        e.target.parentElement.parentElement.nextElementSibling.innerText = value.price * e.target.value;
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    
+    qty.forEach(q => {
+      q.addEventListener('change', qtyHandler);
+    });
+  </script> -->
+  <script>
+    const qty = document.querySelectorAll('.qty');
+    
+    const qtyHandler = async(e) => {
+      try {
+        const productId = e.target.parentElement.children[0].value;
+        const data = { qty: e.target.value };
+        
+        // Check if the quantity is less than 1
+        if (data.qty < 1) {
+          throw new Error('Quantity must be greater than or equal to 1');
+        }
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `/editCart?id=${productId}`);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            const value = JSON.parse(xhr.responseText);
+            document.querySelector('#totalCart').innerText = value.totalPrice;
+            e.target.parentElement.parentElement.nextElementSibling.innerText = value.price * e.target.value;
+          } else {
+            throw new Error(xhr.statusText);
+          }
+        };
+        xhr.onerror = () => {
+          throw new Error('Network error');
+        };
+        xhr.send(JSON.stringify(data));
+        
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    
+    qty.forEach(q => {
+      q.addEventListener('change', qtyHandler);
+    });
+</script>
+
+
+<!--================End Cart Area =================-->
+
+
+  
+  
+
+<%- include ('../layouts/userFooter.ejs') %>

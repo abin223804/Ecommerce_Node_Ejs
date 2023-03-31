@@ -1,0 +1,101 @@
+<%- include('../layouts/adminheader') %>
+
+
+<div class="container mt-3" style="padding-top: 0vh; z-index: 3  ;">
+    <h3 style="margin-left: 40%;padding-bottom: 10px; ">SALES REPORT   <a href="/admin/download" class="pb-2 btn btn-primary" >Download</a></h3>
+    
+      <a class="pb-1 btn btn-primary text-white" href="/admin/salesReport"  type="">Go Back</a>
+    <br>
+    <br>
+    <br>
+    <!-- <form action="/admin/datewiseReport" method="post">
+<div class="row" style="padding-bottom: 40px; padding-top: 40px;" id="sales-div">
+    
+    <div class="col-md-3">
+    <input type="date" class="form-control" value="" name="Startingdate" style="width: 300px;">
+    <span class="text-primary">Enter the Starting date</span>
+    </div>
+    <div class="col-md-3">
+        <input type="date" class="form-control" value="" name="Endingdate" style="width: 300px;">
+        <span class="text-primary">Enter the Ending date</span>
+        </div>
+        <div class="col-md-3">
+            <button type="submit" id="date-donfirm"
+              class=" btn btn-success ">
+              <span>Confirm Date</span>
+          </a>
+          </div>
+          </div>
+        </form> -->
+
+        <div class="col-md-4">
+          <!-- <form method="POST" action="/Dailysales">
+            <select class="form-select form-select-sm" style="width: 27%; border-color: rgb(15, 5, 5); border-width: 4px; color: rgb(15, 1, 3); border-radius: 20px; font-weight: bold;margin-bottom: 5px; margin-top: 5px;" aria-label=".form-select-sm example">
+              <option selected>Daily</option>
+              <option value="2023-01-01">January 2023</option>
+              <option value="2023-02-01">February 2023</option>
+              <option value="2023-03-01">March 2023</option>
+              <option value="2023-04-01">April 2023</option>
+              <option value="2023-05-01">May 2023</option>
+              <option value="2023-06-01">June 2023</option>
+              <option value="2023-07-01">JUly 2023</option>
+              <option value="2023-08-01">August 2023</option>
+              <option value="2023-09-01">September 2023</option>
+              <option value="2023-10-01">October 2023</option>
+              <option value="2023-11-01">November 2023</option>
+              <option value="2023-12-01">December 2023</option>
+            </select>
+          <button class="btn btn-outline-success" type="submit">Show sales</button>
+    </form>
+      -->
+        <!-- <a  style="font-weight: bold; border-radius: 20px" href="/admin/orderdetails?id=CONFIRMED"
+          class=" btn btn-outline-info ">
+          <span>Weekly</span>
+      </a> -->
+      <!-- <form method="POST" action="/weeklysales">
+        <select class="form-select form-select-sm" style="width: 27%; border-color: rgb(15, 5, 5); border-width: 4px; color: rgb(15, 1, 3); border-radius: 20px; font-weight: bold;margin-bottom: 5px; margin-top: 5px;" aria-label=".form-select-sm example">
+          <option selected>Weekly</option>
+          <option value="2023-01-01">January 2023</option>
+          <option value="2023-02-01">February 2023</option>
+          <option value="2023-03-01">March 2023</option>
+          <option value="2023-04-01">April 2023</option>
+          <option value="2023-05-01">May 2023</option>
+          <option value="2023-06-01">June 2023</option>
+          <option value="2023-07-01">JUly 2023</option>
+          <option value="2023-08-01">August 2023</option>
+          <option value="2023-09-01">September 2023</option>
+          <option value="2023-10-01">October 2023</option>
+          <option value="2023-11-01">November 2023</option>
+          <option value="2023-12-01">December 2023</option>
+        </select>
+      <button class="btn btn-outline-danger" type="submit">Show sales</button>
+</form> -->
+      
+        <!-- <a  style="font-weight: bold; border-radius: 20px" href="/admin/orderdetails?id=CONFIRMED"
+          class=" btn btn-outline-dark drop">
+          <span>Monthly</span>
+      </a> -->
+      <form  action="/admin/Monthlysales" method="post" >
+        <select class="form-select form-select-sm" style="width: 27%; border-color: rgb(18, 17, 17);
+         border-width: 4px; color: rgb(15, 1, 3); border-radius: 20px; font-weight:
+          bold; margin-bottom: 5px; margin-top: 5px;" aria-label=".form-select-sm example" name="month">
+          <option selected>Monthly</option>
+          <option value="2023-01-01">January 2023</option>
+          <option value="2023-02-01">February 2023</option>
+          <option value="2023-03-01">March 2023</option>
+          <option value="2023-04-01">April 2023</option>
+          <option value="2023-05-01">May 2023</option>
+          <option value="2023-06-01">June 2023</option>
+          <option value="2023-07-01">July 2023</option>
+          <option value="2023-08-01">August 2023</option>
+          <option value="2023-09-01">September 2023</option>
+          <option value="2023-10-01">October 2023</option>
+          <option value="2023-11-01">November 2023</option>
+          <option value="2023-12-01">December 2023</option>
+        </select>
+
+      <button class="btn btn-outline-info" type="submit">Show sales</button>
+</form>
+
+
+<%-include('../layouts/adminfooter.ejs') %>

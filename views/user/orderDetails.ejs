@@ -1,0 +1,160 @@
+<%- include('../layouts/userLoggedinHeader') %>
+
+
+<style>
+	.mb-3, .my-3 {
+    margin-bottom: 0rem !important;
+}
+</style>
+<br><br>
+<!-- 		
+      <section class="ftco-section ftco-cart">
+			<div class="container">
+				<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="cart-list">
+	    				<table class="table">
+						    <thead class="">
+						      <tr class="text-center">
+						    
+						        <th>&nbsp;</th>
+						  
+							 
+						    </tbody>
+						  </table>
+					  </div>
+    			</div>
+    		</div>
+    		
+			</div>
+		
+		</section> -->
+
+	
+<section class="h-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-10 col-xl-8">
+          <div class="card" style="border-radius: 10px;">
+            <div class="card-header px-4 py-5">
+              <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #ff0000;"  class="text-uppercase"><%= user.name %></span>!</h5>
+            </div>
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <p class="lead fw-normal mb-0" style="color: #ff0000;">Receipt</p>
+              </div>
+
+
+              <!-- let key of order.products.item; -->
+              <% for(let i = 0;i<order.products.item.length;i++){ %>
+                
+              <div class="card shadow-0 border mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src="/admin/assets/uploads/<%= order.products.item[i].productId.image[0]%>"
+                        class="img-fluid" alt="lol">
+                    </div>
+
+                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                        <p class="text-muted mb-0">
+                            <%=order.products.item[i].productId.name %>
+                        </p>
+                    </div>
+
+                    <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">Category:<%=
+                            order.products.item[i].productId.category %>
+                    </p>
+                </div>
+                <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-muted mb-0 small">Qty:<%=
+                            order.products.item[i].qty %>
+                    </p>
+                </div>
+                <div
+                    class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                    <p class="text-success mb-0 small">₹<%=
+                            order.products.item[i].price %>
+                    </p>
+                </div>
+                <% if(order.status=='Delivered' ){ %>
+                  <% if(order.productReturned[i]==0){ %>
+                
+                <% }  else{%>
+                  
+          <% } %>
+
+      </div>
+          <% }} %>
+
+
+              <div class="d-flex justify-content-between pt-2">
+                <div class="mb-0">
+                  <p class="text-muted mb-0 pt-2" style="color: rgb(54, 54, 221);">Track Order :</p>
+                </div>
+                <!-- <br>
+                <br>
+                <br> -->
+                <div class="mb-0">
+                  <div class="d-flex justify-content-around mb-1">
+                    <p class="text-muted pt-2 " style="width: 400px; color: #ea1717;"><%= order.status %></p>
+                  </div>
+                </div>
+              </div>
+<br>
+<br>
+              <div class="d-flex justify-content-between pt-2">
+                <p class="fw-bold mb-0" style="width:450px;">Order Details</p><br>
+                <p class="text-muted mb-0"><span class="fw-bold me-4">Total :</span><%=order.products.totalPrice %></p>
+              </div>
+  
+              <div class="d-flex justify-content-between pt-2 pb-2">
+                <p class="text-muted mb-0" style="width: 440px;">Invoice Number : <%= order._id %></p>
+                <br>
+                <% if(order.discount){ %>
+                <p class="text-muted mb-0">, <span class="fw-bold me-4">Discount :</span>₹<%= order.discoount %></p>
+                <% } else { %>
+                  <p class="text-muted mb-0">, <span class="fw-bold me-4">Discount :</span>Nill</p>
+                  <% } %>
+              </div>
+  
+              <div class="d-flex justify-content-between pb-2" >
+                <p class="text-muted mb-0">Invoice Date : <%= order.createdAt.toDateString() %></p>
+                
+              </div>
+          
+  
+              <div class="d-flex justify-content-between mb-5" style="margin-left: 0px;">
+                <% if(order.offer){ %>
+                <p class="text-muted mb-0">Recepit Coupon : <%= order.offer %></p>
+                <% }else{ %>
+                  <p class="text-muted mb-0">Recepit Coupon : Nill</p>
+                  <% } %>
+                <p class="text-muted mb-0"><span class="fw-bold me-4" style="margin-left: 260px;">Delivery Charge:  </span>₹00.00</p>
+              </div>
+            </div>
+            <div class="card-footer border-0 px-4 py-5"
+              style="background-color: #ffa45c;  ">
+              <h5 class="">Total
+                paid: <span class="">₹<%=order.products.totalPrice %></span></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	<% if(orders.status ==='Delivered'){ %>
+			 
+		<a href="/returnOrder?id=<%=orderId%>" class="btn btn-outline-danger mb-1" style="margin-left: 600px; margin-top: 50px; border-radius: 5px;">Return Order</a>
+		<% }else{} %>
+  </section>
+
+  <br><br><br>
+
+        
+
+  
+
+  <%- include('../layouts/userFooter') %>

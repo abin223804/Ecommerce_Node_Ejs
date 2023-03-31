@@ -1,0 +1,190 @@
+<%- include('../layouts/adminheader') %>
+
+
+<div class="container mt-3" style="padding-top: 0vh; z-index: 3  ;">
+    <h3 style="margin-left: 40%;padding-bottom: 10px; ">SALES REPORT   <a href="/admin/download" class="pb-2 btn btn-primary" >Download</a></h3>
+    
+      <a href="/admin/salesReport " class="pb-1 btn btn-primary text-white"   type="">Go Back</a>
+    <br>
+    <br>
+    <br>
+    <!-- <form action="/admin/datewiseReport" method="post">
+<div class="row" style="padding-bottom: 40px; padding-top: 40px;" id="sales-div">
+    
+    <div class="col-md-3">
+    <input type="date" class="form-control" value="" name="Startingdate" style="width: 300px;">
+    <span class="text-primary">Enter the Starting date</span>
+    </div>
+    <div class="col-md-3">
+        <input type="date" class="form-control" value="" name="Endingdate" style="width: 300px;">
+        <span class="text-primary">Enter the Ending date</span>
+        </div>
+        <div class="col-md-3">
+            <button type="submit" id="date-donfirm"
+              class=" btn btn-success ">
+              <span>Confirm Date</span>
+          </a>
+          </div>
+          </div>
+        </form> -->
+
+        <div class="col-md-4">
+          <!-- <form method="POST" action="/Dailysales">
+            <select class="form-select form-select-sm" style="width: 27%; border-color: rgb(15, 5, 5); border-width: 4px; color: rgb(15, 1, 3); border-radius: 20px; font-weight: bold;margin-bottom: 5px; margin-top: 5px;" aria-label=".form-select-sm example">
+              <option selected>Daily</option>
+              <option value="2023-01-01">January 2023</option>
+              <option value="2023-02-01">February 2023</option>
+              <option value="2023-03-01">March 2023</option>
+              <option value="2023-04-01">April 2023</option>
+              <option value="2023-05-01">May 2023</option>
+              <option value="2023-06-01">June 2023</option>
+              <option value="2023-07-01">JUly 2023</option>
+              <option value="2023-08-01">August 2023</option>
+              <option value="2023-09-01">September 2023</option>
+              <option value="2023-10-01">October 2023</option>
+              <option value="2023-11-01">November 2023</option>
+              <option value="2023-12-01">December 2023</option>
+            </select>
+          <button class="btn btn-outline-success" type="submit">Show sales</button>
+    </form>
+      -->
+        <!-- <a  style="font-weight: bold; border-radius: 20px" href="/admin/orderdetails?id=CONFIRMED"
+          class=" btn btn-outline-info ">
+          <span>Weekly</span>
+      </a> -->
+      <!-- <form method="POST" action="/weeklysales">
+        <select class="form-select form-select-sm" style="width: 27%; border-color: rgb(15, 5, 5); border-width: 4px; color: rgb(15, 1, 3); border-radius: 20px; font-weight: bold;margin-bottom: 5px; margin-top: 5px;" aria-label=".form-select-sm example">
+          <option selected>Weekly</option>
+          <option value="2023-01-01">January 2023</option>
+          <option value="2023-02-01">February 2023</option>
+          <option value="2023-03-01">March 2023</option>
+          <option value="2023-04-01">April 2023</option>
+          <option value="2023-05-01">May 2023</option>
+          <option value="2023-06-01">June 2023</option>
+          <option value="2023-07-01">JUly 2023</option>
+          <option value="2023-08-01">August 2023</option>
+          <option value="2023-09-01">September 2023</option>
+          <option value="2023-10-01">October 2023</option>
+          <option value="2023-11-01">November 2023</option>
+          <option value="2023-12-01">December 2023</option>
+        </select>
+      <button class="btn btn-outline-danger" type="submit">Show sales</button>
+</form> -->
+      
+        <!-- <a  style="font-weight: bold; border-radius: 20px" href="/admin/orderdetails?id=CONFIRMED"
+          class=" btn btn-outline-dark drop">
+          <span>Monthly</span>
+      </a> -->
+      <form  action="/admin/monthlySales" method="post" >
+        <select class="form-select form-select-sm" style="width: 27%; border-color: rgb(18, 17, 17);
+         border-width: 4px; color: rgb(15, 1, 3); border-radius: 20px; font-weight:
+          bold; margin-bottom: 5px; margin-top: 5px;" aria-label=".form-select-sm example" name="month">
+          <option selected>Monthly</option>
+          <option value="2023-01-01">January 2023</option>
+          <option value="2023-02-01">February 2023</option>
+          <option value="2023-03-01">March 2023</option>
+          <option value="2023-04-01">April 2023</option>
+          <option value="2023-05-01">May 2023</option>
+          <option value="2023-06-01">June 2023</option>
+          <option value="2023-07-01">July 2023</option>
+          <option value="2023-08-01">August 2023</option>
+          <option value="2023-09-01">September 2023</option>
+          <option value="2023-10-01">October 2023</option>
+          <option value="2023-11-01">November 2023</option>
+          <option value="2023-12-01">December 2023</option>
+        </select>
+
+      <button class="btn btn-outline-info" type="submit">Show sales</button>
+</form>
+      
+      
+        <!-- <a  style="font-weight: bold; border-radius: 20px" href="/admin/orderdetails?id=CONFIRMED"
+          class=" btn btn-outline-danger ">
+          <span>Yearly</span>
+      </a> -->
+      
+      </div>
+    
+
+   <br>
+
+   
+    <h2>Sales for <%=sales.month %> </h2>
+   
+    <!-- <p>Total sales: <%= sales %></p> -->
+  
+    
+ 
+  <table id="myTab" class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Product</th>
+          <th>image</th>
+          <th>Category</th>
+          <th>Month</th>
+          <th>Year</th>
+          <th>Quantity Sold</th>
+          <th>Total Sales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(sales.length>0){ %>
+          <% sales.forEach(report => { %> 
+          <tr>
+            <td><%= report.name %></td>
+            <td><img src="/admin/multer/img/<%=report.productId.image %>"></td>
+            <td><%= report.category %></td>
+            <td><%= report.month %></td>
+            <td><%= report.year %></td>
+            <td><%= report.quantity %></td>
+            <td><%= report.totalSales.toFixed(2) %></td>
+          </tr>
+          <% }) %>
+          <% }else{ %>
+            <p style="color: rgb(245, 13, 13);">No sales found in this month</p>
+            <% } %>
+        </tbody>
+         
+      <footer>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </footer>
+    </table>
+    </div>
+    <!-- <script>
+      $(document).ready(function() {
+      $('#myTab').DataTable( {
+          dom: 'Bfrtip',
+          buttons: [
+              'copy', 'csv', 'excel', 'pdf', 'print'
+          ]
+      } );
+  } )
+      </script> -->
+
+<script>
+$(document).ready(function() {
+  // Attach click event handler to update button
+  $('#date-donfirm').click(function() {
+    // Make AJAX request to server
+    $.ajax({
+      url: '/update-content', // URL of server-side route to handle the request
+      method: 'POST', // HTTP method to use (e.g. GET, POST)
+      data: { /* Optional data to send with the request */ },
+      success: function(response) {
+        // Update content of div with response from server
+        $('#sales-div').html(response);
+      },
+      error: function() {
+        alert('Error occurred while updating content');
+      }
+    });
+  });
+});
+
+
+</script>
+
+<%- include('../layouts/adminfooter') %>

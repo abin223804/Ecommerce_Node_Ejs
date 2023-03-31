@@ -1,0 +1,188 @@
+<%-include('../layouts/userloggedinheader.ejs')  %> 
+
+<div class="dashboard">
+    <div class="container">
+        <!-- <div class="row">
+            <div class="col-md-4 col-lg-3"> -->
+    <form action="/addaddress" method="post" >
+        <div class="row">
+            <div class="col-lg-9">
+                <h2 class="checkout-title">New Address</h2><!-- End .checkout-title -->
+                    
+                
+                    <label>Name *</label>
+                     <input type="text" class="form-control" id="firstname" name="firstname" >
+                     <span id="nameerror"></span>
+                        
+                     <label>Last Name *</label>
+                     <input type="text" class="form-control" name="lastname"  >
+                     
+
+                    <label>Country *</label>
+                    <input type="text" class="form-control" id="country" name="country">
+                    <span id="countryerror"></span>
+
+                    <label>address  *</label>
+                    <input type="text" class="form-control" id="address" placeholder="House number and Street name" name="address" >
+                    <span id="addresserror"></span>
+                    
+                
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Town / City *</label>
+                            <input type="text" class="form-control" id="city"name="city" >
+                            <span id="cityerror"></span>
+                        </div><!-- End .col-sm-6 -->
+
+                        <div class="col-sm-6">
+                            <label>State / County *</label>
+                            <input type="text" class="form-control" id="state" name="state" >
+                            <span id="stateerror"></span>
+                        </div><!-- End .col-sm-6 -->
+                    </div><!-- End .row -->
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Postcode / ZIP *</label>
+                            <input type="text" class="form-control" id="postcode"  name="zip" >
+                            <span id="postcodeerror"></span>
+                        </div><!-- End .col-sm-6 -->
+
+                        <div class="col-sm-6">
+                            <label>Phone *</label>
+                            <input type="tel" class="form-control" id="phone"  name="phone">
+                            <span id="phoneerror"></span>
+                        </div><!-- End .col-sm-6 -->
+                    </div><!-- End .row -->
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-success" onclick="return validateForm()">
+                        
+                       
+                        <i class="icon-long-arrow-right"></i>
+                    submit</button>
+                        
+            </div><!-- End .col-lg-9 -->
+        </div><!-- End .row -->
+    </form>
+    </div>
+</div><!-- .En
+    d .tab-pane -->
+    <script>
+        function validateForm() {
+            var firstname = document.forms["addressform"]["firstname"].value;
+            var lastname = document.forms["addressform"]["lastname"].value;
+            var country = document.forms["addressform"]["country"].value;
+            var address = document.forms["addressform"]["address"].value;
+            var city = document.forms["addressform"]["city"].value;
+            var state = document.forms["addressform"]["state"].value;
+            var postcode = document.forms["addressform"]["postcode"].value;
+            var phone = document.forms["addressform"]["phone"].value;
+            var hasError = false;
+    
+            if (firstname == "") {
+                document.getElementById("nameerror").innerHTML = "Please enter your first name";
+                hasError = true;
+            }
+            if (lastname == "") {
+                document.getElementById("lastnameerror").innerHTML = "Please enter your last name";
+                hasError = true;
+            }
+            if (country == "") {
+                document.getElementById("countryerror").innerHTML = "Please enter your country";
+                hasError = true;
+            }
+            if (address == "") {
+                document.getElementById("addresserror").innerHTML = "Please enter your address";
+                hasError = true;
+            }
+            if (city == "") {
+                document.getElementById("cityerror").innerHTML = "Please enter your town/city";
+                hasError = true;
+            }
+            if (state == "") {
+                document.getElementById("stateerror").innerHTML = "Please enter your state/county";
+                hasError = true;
+            }
+            if (postcode == "") {
+                document.getElementById("postcodeerror").innerHTML = "Please enter your postcode/zip";
+                hasError = true;
+            }
+            if (phone == "") {
+                document.getElementById("phoneerror").innerHTML = "Please enter your phone number";
+                hasError = true;
+            }
+    
+            if (hasError) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    
+        document.getElementById("addressform").addEventListener("submit", function(event){
+            if(!validateForm()) {
+                event.preventDefault();
+            }
+        });
+    </script>
+    
+
+<!-- .End .tab-pane -->
+<br>
+<div class="container">
+    <!-- <div class="row"> -->
+    
+    <p>The following addresses will be used on the checkout page by default.</p>
+
+    
+
+    <div class="row">
+        <%if(userAddress.length>0){
+            for(let key of userAddress){%>
+        <div class="col-lg-6">
+            <div class="card card-dashboard">
+
+                <div class="card-body">
+                    <h3 class="card-title">Billing Address</h3><!-- End .card-title -->
+
+                    <p><%= key.firstname %> <%=key.lastname%><br>
+                        <%= key.address %> <br>
+                        
+                        <%= key.country %><br>
+                         <%= key.state %><br>
+                         <%= key.city %> ,
+                        <%= key.zip %><br>
+                        <%= key.phone %><br>
+                       <br>
+                    <!-- <a href="#">Edit <i class="icon-edit"></i></a> -->
+                    <!-- <a href="/deleteaddress?id=<%= key._id %>" class="btn btn-danger"> delete</a> -->
+                    <a href="/deleteaddress?id=<%= key._id %>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this address?')">Delete</a>
+
+                    <a href="/loadEditaddress?id=<%=key._id %>" class="btn btn-primary"> Edit Address</a>
+                </p>
+                </div><!-- End .card-body -->
+            </div><!-- End .card-dashboard -->
+        </div><!-- End .col-lg-6 -->
+        <%}}else{%>
+
+        <div class="col-lg-6">
+            <div class="card card-dashboard">
+                <div class="card-body">
+                    <h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
+
+                    <p>You have not set up this type of address yet.<br>
+                    <a href="#">Edit <i class="icon-edit"></i></a></p>
+                    <div>
+        <a class="nav-link btn  btn-outline-primary-2" id="tab-downloads-link" data-toggle="tab" href="/loadNewAddress" role="tab" aria-controls="tab-downloads" aria-selected="false">Add Address<i class="icon-edit"></i></a>
+
+    </div>
+                </div><!-- End .card-body -->
+            </div><!-- End .card-dashboard -->
+        </div><!-- End .col-lg-6 -->
+        <%}%>
+    </div><!-- End .row -->
+</div>
+<!-- <script src="validation.js"></script> -->
+<%-include('../layouts/userfooter.ejs')  %> 

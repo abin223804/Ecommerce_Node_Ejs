@@ -1,0 +1,362 @@
+
+<%- include ('../layouts/adminHeader.ejs') %>
+
+<!-- Dashboard -->
+    
+<li class="menu-item active">
+  <a href="dashboard" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+    <div data-i18n="Analytics">Dashboard</div>
+  </a>
+</li>
+
+<li class="menu-item">
+  <a href="user" class="menu-link">
+    
+    <i class="menu-icon tf-icons bx bxs-user-detail"></i>
+    <div data-i18n="Basic">User List</div>
+  </a>
+</li>
+
+<li class="menu-item">
+  <a href="adminProduct" class="menu-link">
+    
+    <i class="menu-icon tf-icons bx bxs-florist"></i>
+    <div data-i18n="Basic">Product Details</div>
+  </a>
+</li>
+
+
+<li class="menu-item">
+  <a href="adminCategory" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-table"></i>
+    <div data-i18n="Analytics">Category</div>
+  </a>
+</li>
+
+
+<li class="menu-item ">
+  <a href="offer" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-gift"></i>
+    <div data-i18n="Analytics">Offers</div>
+  </a>
+</li>
+  
+<li class="menu-item ">
+  <a href="loadbanner" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-collection"></i>
+    <div data-i18n="Analytics">Banner</div>
+  </a>
+</li>
+
+<li class="menu-item ">
+  <a href="orderReport" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-collection"></i>
+    <div data-i18n="Analytics">Order Report</div>
+  </a>
+</li>
+
+<li class="menu-header small text-uppercase"><span class="menu-header-text"></span></li>
+<li class="menu-item">
+<a
+  href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+  target="_blank"
+  class="menu-link"
+>
+  <i class="menu-icon tf-icons bx bx-"></i>
+  <div data-i18n="Support"></div>
+</a>
+</li>
+<li class="menu-item">
+<a
+  href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+  target="_blank"
+  class="menu-link"
+>
+  <i class="menu-icon tf-icons bx bx-"></i>
+  <div data-i18n="Documentation"></div>
+</a>
+</li>
+</ul>
+</aside>
+<!-- / Menu -->
+
+<!-- Layout container -->
+<div class="layout-page">
+<!-- Navbar -->
+
+<nav
+class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+id="layout-navbar"
+>
+<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+<a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+  <i class="bx bx-menu bx-sm"></i>
+</a>
+</div>
+
+<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+<!-- Search -->
+<!-- <div class="navbar-nav align-items-center">
+  <div class="nav-item d-flex align-items-center">
+    <i class="bx bx-search fs-4 lh-0"></i>
+    <input
+      type="text"
+      class="form-control border-0 shadow-none"
+      placeholder="Search..."
+      aria-label="Search..."
+    />
+  </div>
+</div> -->
+<!-- /Search -->
+
+<ul class="navbar-nav flex-row align-items-center ms-auto">
+  <!-- Place this tag where you want the button to render. -->
+  <!-- <li class="nav-item lh-1 me-3">
+    <a
+      class="github-button"
+      href="https://github.com/themeselection/sneat-html-admin-template-free"
+      data-icon="octicon-star"
+      data-size="large"
+      data-show-count="true"
+      aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+      >Star</a
+    >
+  </li> -->
+
+  <!-- User -->
+  <li class="nav-item navbar-dropdown dropdown-user dropdown">
+    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+      <div class="avatar avatar-online">
+        <img src="/admin/assets/img/avatars/winkel.jpg" alt class="w-px-40 h-auto rounded-circle" />
+      </div>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li>
+        <a class="dropdown-item" href="#">
+          <div class="d-flex">
+            <div class="flex-shrink-0 me-3">
+              <div class="avatar avatar-online">
+                <img src="/admin/assets/img/avatars/winkel.jpg" alt class="w-px-40 h-auto rounded-circle" />
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              <span class="fw-semibold d-block">/span>
+              <small class="text-muted">Admin</small>
+            </div>
+          </div>
+        </a>
+      </li>
+     
+      <li>
+        <div class="dropdown-divider"></div>
+      </li>
+      <li>
+        <a class="dropdown-item" href="admin/adminLogout">
+          <i class="bx bx-power-off me-2"></i>
+          <span class="align-middle">Log Out</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <!--/ User -->
+</ul>
+</div>
+</nav>
+
+
+
+
+<table class="table" id="productsTable" >
+<thead>
+  <tr>
+<th>
+
+</th>
+  </tr>
+</thead>
+
+</table>
+
+
+<form action="/admin/editProduct" method="post" class="my-auto" style="height: 90vh;" enctype="multipart/form-data">
+    <div class="container h-100 ">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card bg-transparent" style="border-radius: 25px;">
+                    <div class="card-body p-md-2">
+                        <div class="row justify-content-center">
+                            <div class="col-md-2 col-lg-6 col-xl-5 order-2 order-lg-1 width-50">
+                              <style>
+                                .text-center {
+                                    text-align: center;
+                                }
+                            
+                                .h1 {
+                                  font-style:oblique;
+                                    font-size: 2.5rem;
+                                    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif /* change the font family here */
+                                }
+                            
+                                .fw-bold {
+                                    font-weight: bold;
+                                }
+                            
+                                .mb-5 {
+                                    margin-bottom: 3rem;
+                                }
+                            
+                                .mx-1 {
+                                    margin-left: 1rem;
+                                    margin-right: 1rem;
+                                }
+                            
+                                .mx-md-4 {
+                                    margin-left: 1.5rem;
+                                    margin-right: 1.5rem;
+                                }
+                            
+                                .text-main-1 {
+                                    color: #007bff;
+                                }
+                            </style>
+                            
+                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 ">Edit<span class="text-main-1">Product</span></p>
+                            
+
+                                <form class="mx-1 mx-md-2">
+      
+                                    <div class="d-flex flex-row align-items-center mb-2">
+
+                        
+                                        <div class="form-outline flex-fill mb-0">
+                                        <label class="form-label" for="form3Example1c">Name</label>
+                                        <input type="text" id="form3Example1c" class="form-control" name="sName" value="<%= product.name %>" required/>
+                                        
+                                      </div>
+                                    </div>
+                               
+                                    <!-- <div class="d-flex flex-row align-items-center mb-2">
+
+                        
+                                      <div class="form-outline flex-fill mb-0">
+                                      <label class="form-label" for="form3Example1c">Name</label>
+                                      <input type="text" id="form3Example1c" class="form-control" name="sName" value="<%= product.image %>" required/>
+                                      
+                                    </div>
+                                  </div> -->
+                
+                  
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                      
+                                      <div class="form-outline flex-fill mb-0">
+                                        <label class="form-label" for="form3Example3c">Stock</label>
+                                        <input type="number" id="form3Example3c" min="1" class="form-control" name="sQuantity" value="<%= product.quantity %>" required/>
+                                        
+                                      </div>
+                                    </div>
+                  
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                       
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="form3Example1c">Price</label>
+                                          <input type="number" id="form3Example1c" min="1" class="form-control" name="sPrice" value="<%= product.price %>" required/>
+                                          
+                                        </div>
+                                      </div>
+            
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                     
+                                      <div class="form-outline flex-fill mb-0">
+                                        <label class="form-label" for="form3Example4c">Description</label>
+                                        <input type="text" id="form3Example4c" class="form-control" name="sDescription"  value="<%= product.description %>" required/>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                       
+                                      <div class="form-outline flex-fill mb-0">
+                                          <label class="form-label" for="form3Example1c">Rating</label>
+                                        <input type="number" id="form3Example1c" class="form-control" name="sRating" value="<%= product.rating %>" min="1" max="5" required/>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <script>
+                                      
+                                    </script>
+                                    <div class="d-flex flex-row align-items-center mb-2">
+                                       
+                                      <div class="form-outline flex-fill mb-0">
+                                        <label class="form-label  select-label" for="form3Example1c">Category</label>
+                                        <!-- <select name="category" class="form-control">
+                                          <option value="" disabled selected>Category</option>
+                                          <option value="T-Shirt">T-shirt</option>
+                                          <option value="Shirt">Shirt</option>
+                                          <option value="shoes">Shoes</option>
+                                          <option value="Bags">Bags</option>
+                                          <option value="Watches">watches</option>
+                                        </select> -->
+
+                                        <select name="sCategory" class="form-control">
+                                          <option value="<%= product.category %>" disabled selected><%= product.category %></option>
+                                          <% if(category){ %>
+                                          <% for(let i=1;i <= category.length; i++){ %>
+                                            <option value="<%= category[i-1].name %>">
+                                              <%= category[i-1].name %>
+                                            </option>
+                                            <% } %>
+                                          <% }else{ %>
+                                            <h1>No Categories to add</h1>
+                                          <% } %>  
+                                        </select>
+
+
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                          <label class="form-label" for="form3Example4c">Image</label>
+                                          <input type="file" id="form3Example4c" class="form-control" name="sImage" multiple />
+                                        </div>
+                                      </div>
+                                      <tbody>
+                                        <td>
+                                         <% if(product.image) { %>
+                                             <img src="/admin/multer/img/<%= product.image[0] %>"
+                                                 width="100vw" height="100vh">
+                                                 <img src="/admin/multer/img/<%= product.image[1] %>"
+                                                 width="100vw" height="100vh">
+                                                 <img src="/admin/multer/img/<%= product.image[2] %>"
+                                                 width="100vw" height="100vh">
+                                                 
+                                             <% }else{ %>
+                                                 Image Not Found
+                                                 <% } %>
+                                     </td> 
+                                     </tbody>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <input type="hidden" name="id" value="<%= product._id %>">
+                                      <button  type="submit" value="Register" class="btn btn-primary btn-lg">Save Edits</button>
+                                      <a href="/admin/adminProduct" </a>
+                                    </div>
+            
+                                    <% if(typeof message !== 'undefined'){%>
+                                        <p style="color:green"><%= message %></p>
+                                    <% } %>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>
+<style>
+  
+  
+</style>
+
+<%- include ('../layouts/adminFooter.ejs') %>

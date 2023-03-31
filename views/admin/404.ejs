@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Error</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+          <img src="">
+      </div>
+      <div class="header__menu">
+          <ul>
+              
+          </ul>
+        <span class="hamburger__menu">☰</span>
+      </div>
+  </header>
+  <section class="errorPage">
+      <div class="errorPage__text">
+          <h3>404</h3>
+          <span class="errorPage__button">Back to home</span>
+      </div>
+      <span class="errorPage__templeweed-container"><img src="https://i.ibb.co/mTg87G2/tembleweed.png" class="errorPage__tembleweed"></span>
+      <div class="errorPage__terrain"></div>
+  </section>
+  <style>
+    body {
+    font-family: Trebuchet MS;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    max-width: 95%;
+    margin-left: 2.5%;
+    position: fixed;
+    z-index: 2;
+}
+
+.header__menu ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.header__menu ul li {
+    color: #fff;
+    letter-spacing: .3em;
+}
+
+.header__menu ul li {
+    margin-right: 5vh;
+}
+
+.header__logo img {
+    filter: brightness(0) invert(1);
+    height: 40px;
+}
+
+.errorPage {
+    background: url(https://i.ibb.co/sv6wRvq/wildwest-bg.jpg);
+    background-size: cover;
+    background-position: bottom;
+    width: 100%;
+    height: 100vh;
+}
+
+img.errorPage__tembleweed {
+    animation: templeWeed 5s infinite 1s;
+}
+
+.errorPage__templeweed-container {
+    position: absolute;
+    bottom: 20px;
+    width: 10vw;
+    transform: translateX(-100%);
+    animation: moveWeed 3s infinite linear;
+}
+
+.errorPage__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin-top: -5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.errorPage__button {
+    display: block;
+    cursor: pointer;
+    border: 1px solid #fff;
+    color: #e3594e;
+    padding: 10px 30px;
+    letter-spacing: 0.2em;
+    box-shadow: 7px 7px 20px #00000026;
+    background: #fff;
+    transition: transform 300ms ease;
+}
+
+.errorPage__button:active {
+    transform: translateY(2px);
+    box-shadow: 3px 3px 20px #00000026;
+}
+
+.errorPage__text h3 {
+    font-size: 20vw;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 0.2em;
+    margin-bottom: 50px;
+    color: #fff;
+    text-shadow: 7px 7px 20px #00000026;
+}
+
+.hamburger__menu {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 300;
+    display: block;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .header__menu .hamburger__menu {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .header__menu ul {
+    display: none;
+  }
+}
+
+@keyframes moveWeed {
+    0% {
+        left: 0;  
+        transform: translateX(-100%) rotate(0);
+    }
+    
+    100% {
+        left: 130%;
+        transform: translateX(100%) rotate(540deg);
+    }
+}
+
+@keyframes templeWeed {
+    0% {
+        transform: translateY(0);
+    }
+    
+    30% {
+        transform: translateY(-3vw);
+    }
+    
+    60% {
+        transform: translateY(-4vw);
+    }
+    
+    90% {
+        transform: translateY(0);
+    }
+    
+    90% {
+        transform: translateY(0);
+    }
+    
+}
+  </style>
+  
+
+
+
+  </body>
+</html>

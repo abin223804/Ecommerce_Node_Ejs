@@ -56,9 +56,9 @@ app.get('*',(req,res)=>{
 })
 
 
-app.use((err,req,res,next)=>{
+app.use((error,req,res,next)=>{
   res.status(err.status|| 500)
-  res.render('error',{error:err})
+  res.render('error',{error:error})
 })
 
 

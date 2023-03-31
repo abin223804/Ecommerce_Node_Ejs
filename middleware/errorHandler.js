@@ -1,13 +1,13 @@
 // error handler 
 
-const errorHandler = (err,req,res,next) => {
-    if(err){
+const errorHandler = (error,req,res,next) => {
+    if(error){
         res.status(500).json({
             error:{
                 message:"oops something wrong",
             }
         })
-        console.log(err);
+        console.log(error);
     }
 }
 

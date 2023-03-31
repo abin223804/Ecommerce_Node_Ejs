@@ -10,7 +10,7 @@ const fast2sms = require("fast-two-sms");
 const { findOne } = require("../model/userModel");
 const userMiddleware = require("../middleware/userMiddleware");
 const { ObjectID } = require("bson");
-const { loadDashboard } = require("./adminController");
+const { loadDashboard } = require("./Admincontroller");
 const { request } = require("express");
 const Razorpay = require("razorpay");
 

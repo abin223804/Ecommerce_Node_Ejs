@@ -54,6 +54,17 @@ app.use('/admin',adminRoute)
 app.get('*',(req,res)=>{
   res.render('404') 
 })
+
+
+app.use((err,req,res,next)=>{
+  res.status(err.status|| 500)
+  res.render('error',{error:err})
+})
+
+
+
+
+
  const port=4000
 
 

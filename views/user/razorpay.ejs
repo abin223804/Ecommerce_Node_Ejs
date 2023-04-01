@@ -34,13 +34,13 @@
                                             document.getElementById('rzp-button1').onclick =async function (e) {
                                                 e.preventDefault();
 
-                                                let response = await fetch("http://13.211.11.82:4000/razorpay",{
+                                                let response = await fetch("https://13.211.11.82:4000/razorpay",{
                                                     method: "POST",
                                                     headers:{
                                                         "Content-Type":"application/json"
                                                     },
                                                     body:JSON.stringify({
-                                                        amount:7800,
+                                                        amount:7800,       
                                                     })
                                                 })
                                                 let orderData = await response.json()

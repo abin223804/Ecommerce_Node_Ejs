@@ -34,7 +34,7 @@
                                             document.getElementById('rzp-button1').onclick =async function (e) {
                                                 e.preventDefault();
 
-                                                let response = await fetch("http://13.211.11.82/razorpay",{
+                                                let response = await fetch("http://13.211.11.82:4000/razorpay",{
                                                     method: "POST",
                                                     headers:{
                                                         "Content-Type":"application/json"

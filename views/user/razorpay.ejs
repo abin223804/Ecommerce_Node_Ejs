@@ -3,7 +3,7 @@
 
 
 
-<div class="container h-100">
+<!-- <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-12 col-xl-11">
             <div class="card bg-transparent" style="border-radius: 25px;">
@@ -77,8 +77,84 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+            <div class="card bg-transparent" style="border-radius: 25px;">
+                <div class="card-body p-md-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><span
+                                    class="text-main-1">Razorpay Process</span> To Payment</p>
 
+                            <div class="d-flex flex-row align-items-center mb-4">
+                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label class="text-center form-label" for="form3Example3c">Click Below to
+                                        Pay <br>Total:<%= total %></label>
+                                </div>
+                            </div>
+
+                            <div class="row vertical-gap">
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+
+
+                                        <button class="btn btn-danger ml-2 btn-lg mx-3" id="rzp-button1">Pay</button>
+                                        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                                        <script>
+
+
+                                            document.getElementById('rzp-button1').onclick =async function (e) {
+                                                e.preventDefault();
+
+                                                let response = await fetch("http://localhost:4000/razorpay",{
+                                                    method: "POST",
+                                                    headers:{
+                                                        "Content-Type":"application/json"
+                                                    },
+                                                    body:JSON.stringify({
+                                                        amount:7800,
+                                                    })
+                                                })
+                                                let orderData = await response.json()
+                                                console.log(typeof(orderData.order.amount));
+
+                                                var options = {
+                                                    "key": 'rzp_test_DRjeBcdJDCrHVL', // Enter the Key ID generated from the Dashboard
+                                                    "amount": orderData.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                                                    "currency": "INR",
+
+                                                    "order_id": orderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                                                    "handler": function (response) {
+                                                        console.log(response);
+                                                        alert(response.razorpay_payment_id);
+                                                        alert(response.razorpay_order_id);
+                                                        alert(response.razorpay_signature)
+                                                    },
+
+                                                };
+
+                                                var rzp1 = new Razorpay(options);
+
+                                                rzp1.open();
+                                            }
+
+                                        </script>
+
+                                        <a href="/checkout" class="btn btn-danger ml-2 btn-lg">Go Back</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         
             <%- include('../layouts/userFooter') %>
             

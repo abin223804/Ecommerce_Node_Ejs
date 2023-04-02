@@ -24,18 +24,18 @@
 <section class="cart_area">
     <div class="container">
         <div class="cart_inner">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Product</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% if(wishlistProducts) { %>
+            <% if(wishlistProducts && wishlistProducts.item.length > 0) { %>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <% for(let key of wishlistProducts.item) { %>
                                 <tr>
                                     <td>
@@ -66,18 +66,14 @@
                                     <td class=""><a href="/deleteWishlist?id=<%= key.productId._id %>"><i class="fa fa-close" style="font-size:24px;color:#ffba00"></i></a></td>
                                 </tr>
                             <% } %>
-                        <% } else { %>
-                            <tr>
-                                <td colspan="5">
-                                    <div class="text-center">
-                                        <h4>Your wishlist is empty</h4>
-                                    </div>
-                                </td>
-                            </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <div class="alert alert-info" role="alert">
+                    Your wishlist is currently empty.
+                </div>
+            <% } %>
         </div>
     </div>
 </section>

@@ -70,47 +70,25 @@
                     </table>
                 </div>
             <% } else { %>
-                <div id="wishlist-alert" class="alert alert-info" role="alert">
+                <div id="wishlist" class="alert alert-info" role="alert">
                     Your wishlist is currently empty.
-                  </div>
+                </div>
 <style>
-    .alert {
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
+    #wishlist {
+    background-color: #e7f3fe;
+    border-color: #afdaff;
+    color: #4d4d4d;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
 }
 
-.alert-info {
-  color: #0c5460;
-  background-color: #d1ecf1;
-  border-color: #bee5eb;
-}
-
-.alert-success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-}
-
-.alert-danger {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-}
-
-.alert-warning {
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #ffeeba;
-}
-
-</style>     
+</style>             
 <script>
-    const wishlistAlert = document.querySelector("#wishlist-alert");
-
-wishlistAlert.addEventListener("click", function() {
-  wishlistAlert.style.display = "none";
+    // This code will change the text of the wishlist div on click of a button
+document.querySelector("#wishlist").addEventListener("click", function() {
+    document.querySelector("#wishlist").innerHTML = "Add items to your wishlist!";
 });
 
 </script>             

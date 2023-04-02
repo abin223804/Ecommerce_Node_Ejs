@@ -1,99 +1,90 @@
 <% if(id) { %>
     <%- include('../layouts/userLoggedinHeader') %>
-    <% }else { %>
+<% } else { %>
     <%- include('../layouts/userHeaders') %>
-    <% } %>
+<% } %>
 
-
-
-    
-    <!-- Start Banner Area -->
-    <!-- <section class="banner-area organic-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
-                    <h1>My Wishlist</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/wishlist">My Wishlist</a>
-                    </nav>
-                </div>
+<!-- Start Banner Area -->
+<!-- <section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>My Wishlist</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/wishlist">My Wishlist</a>
+                </nav>
             </div>
         </div>
-    </section> -->
-    <!-- End Banner Area -->
+    </div>
+</section> -->
+<!-- End Banner Area -->
 
-    <!--================My Wishlist Area =================-->
-    <section class="cart_area">
-        <div class="container">
-            <div class="cart_inner">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% if(wishlistProducts){%>
-                                <% for(let key of wishlistProducts.item) {%>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img class="img-fluid" src="/admin/multer/img/<%= key.productId.image[0] %>" alt="" style="width: 180px;height: 180px;" >
+<!--================My Wishlist Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(wishlistProducts) { %>
+                            <% for(let key of wishlistProducts.item) { %>
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img class="img-fluid" src="/admin/multer/img/<%= key.productId.image[0] %>" alt="" style="width: 180px;height: 180px;" >
+                                            </div>
                                         </div>
-                                       
+                                    </td>
+                                    <td>
+                                        <div class="media-body">
+                                            <p><h4><%= key.productId.name %></h4></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="media-body">
+                                            <p><h4><%= key.productId.category %></h4></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="media-body">
+                                            <p><h4>₹ <%= key.productId.price %></h4></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="/addToCartDeleteWishlist?id=<%= key.productId._id %>" class="btn btn-outline-warning">Add TO Cart</a>
+                                    </td>
+                                    <td class=""><a href="/deleteWishlist?id=<%= key.productId._id %>"><i class="fa fa-close" style="font-size:24px;color:#ffba00"></i></a></td>
+                                </tr>
+                            <% } %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5">
+                                    <div class="text-center">
+                                        <h4>Your wishlist is empty</h4>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="media-body">
-                                        <p><h4><%= key.productId.name %></h4></p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="media-body">
-                                        <p><h4><%= key.productId.category %></h4></p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="media-body">
-                                        <p><h4>₹ <%= key.productId.price %></h4></p>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <a href="/addToCartDeleteWishlist?id=<%= key.productId._id %>" class="btn btn-outline-warning">Add TO Cart</a>
-                                </td>
-
-                                <td class=""><a href="/deleteWishlist?id=<%= key.productId._id %>"><i class="fa fa-close" style="font-size:24px;color:#ffba00"></i></a></td>
-
                             </tr>
-                           
-                           
-
-                            <% } %>
-                        <% }else{ %>
-                            <div>
-                            <h4>empty  wishlist</h4>
-                        </div>
-
-                            <% } %>
-
-
-                        </tbody>
-                    </table>
-                </div>
+                        <% } %>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
-    <!--================End Cart Area =================-->
+    </div>
+</section>
+<!--================End Cart Area =================-->
 
-    <!-- start footer Area -->
-    
-    <!-- End footer Area -->
+<!-- start footer Area -->
 
-    <%- include ('../layouts/userFooter.ejs') %>
+<!-- End footer Area -->
+
+<%- include ('../layouts/userFooter.ejs') %>

@@ -130,7 +130,7 @@
 						<a href="?page=<%= next %>" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 					</div>
 					
-					<div style="margin-left: 200px;">
+					<!-- <div style="margin-left: 200px;">
 						<form class="d-flex justify-content-between">
 							<input type="text" class="form-control" id="search_input" placeholder="Search Here" name="search">
 							<button type="submit" class="btn" >search</button>
@@ -167,7 +167,84 @@ button[type="submit"]:hover {
   background-color: #45a049;
 }
 
-</style>					  
+</style>					   -->
+
+
+<div class="searchBox" style="margin-left: 200px;">
+
+	<input class="searchInput"type="text" name="" placeholder="Search" id="search_input">
+	<button class="searchButton" href="#">
+		<i class="material-icons">
+			search
+		</i>
+	</button>
+</div>
+<style>
+	/*  */
+
+.searchBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%,50%);
+    background: #2f3640;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+
+}
+
+.searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+  background: white;
+  color : #2f3640;
+}
+
+.searchButton {
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.searchInput {
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+
+}
+
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+}
+}
+</style>
+
+
+
+
+
+
+
 				</div>
 			</div>
 			

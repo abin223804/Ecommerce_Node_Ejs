@@ -872,9 +872,9 @@ const userData = await register.findById({_id:req.session.userId})
     res.render('orderDetails',{order:completeOrder,id:req.session.user_id,orders:order,orderId:order._id,user:userData})
 
   }
-  catch(err)
+  catch(error)
   {
-    console.log(err)
+    console.log(error)
     next(error);
   }
 }

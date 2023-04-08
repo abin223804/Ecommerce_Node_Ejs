@@ -651,10 +651,10 @@ const storeOrder = async (req, res, next) => {
   try {
     userSession = req.session;
 
-    // // Check if required fields are missing
-    // if (!req.body.payment || !req.body.firstname || !req.body.lastname || !req.body.country || !req.body.address || !req.body.city || !req.body.state || !req.body.zip || !req.body.phone) {
-    //   return res.render('alert');
-    // }
+    // Check if required fields are missing
+    if (!req.body.payment || !req.body.firstname || !req.body.lastname || !req.body.country || !req.body.address || !req.body.city || !req.body.state || !req.body.zip || !req.body.phone) {
+      return res.render('alert');
+    }
 
     if (userSession.userId) {
 

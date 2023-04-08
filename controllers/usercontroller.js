@@ -827,7 +827,12 @@ const razorpayCheckout = async (req, res,next) => {
       });
     };
   
+const paymentFailure=async(req,res)=>{
 
+res.send('payment failure')
+
+
+}
 
 
 
@@ -1016,4 +1021,5 @@ module.exports = {
   returnProduct,
   addCoupon,
   returnRequest,
+  paymentFailure
 };

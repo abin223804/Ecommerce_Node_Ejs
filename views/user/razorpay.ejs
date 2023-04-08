@@ -78,177 +78,104 @@
         </div>
     </div>
 </div> -->
-<!DOCTYPE html>
-<html>
+
+
 
 <head>
     <title>Razorpay Payment Gateway Integration</title>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-    <style>
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+  </head>
+  <body>
+    <!-- <section style="height: 100vh;">
+    <h1>Order Details</h1>
+    <p>Order ID: <%= order_id%></p>
+    <p>Total Price: <%= total%></p>
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    <button id="rzp-button">Pay with Razorpay</button> -->
 
-        body {
+    <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+      <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+        <h4 class="mtext-109 cl2 p-b-30">
+          Order Details
+        </h4>
 
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f2f2f2;
-            background-image: url(https://www.lyra.com/in/wp-content/uploads/sites/8/2019/05/2-4.png);
-            background-repeat: no-repeat;
-            display: flex;
-            background-size: cover;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
+        <div class="flex-w flex-t bor12 p-b-13">
+         
+        </div>
 
-        .card {
-            background-color: white;
-            border-radius: 15px;
-            padding: 35px;
-            box-shadow: 0 12px 18px rgba(0, 0, 0, 0.9);
-            animation: fadeIn 0.8s ease-out;
-            width: 300px;
-            max-width: 800px;
-            margin: 0 auto;
+        <div class="flex-w flex-t p-t-27 p-b-33">
+          <div class="size-208">
+            <span class="mtext-101 cl2">
+              Order ID:
+            </span>
+          </div>
 
-        }
+          <div class="size-209 p-t-1">
+            <span class="mtext-110 cl2 totalCart" id="totalId">
+              <%= order_id%>
+            </span>
+          </div>
+        </div>
 
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
+        <div class="flex-w flex-t p-t-27 p-b-33">
+          <div class="size-208">
+            <span class="mtext-101 cl2">
+              Total Price:
+            </span>
+          </div>
 
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 50px;
-        }
-
-        input[type="hidden"] {
-            display: none;
-        }
-
-        .btn {
-            background-color: #dcd628;
-            color: white;
-            border-radius: 30px;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            text-transform: uppercase;
-            margin-top: 25px;
-        }
-
-        .btn:hover {
-            background-color: #9f9509;
-        }
-
-        .processing {
-            background-color: #bcbcbc;
-            cursor: default;
-        }
-
-        .processing:hover {
-            background-color: #bcbcbc;
-        }
-
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 25px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="card">
-        <h1>Pay with Razorpay</h1>
-        <form method="get" action="/onlinePayment">
-            <input type="hidden" name="userId" value="<%= userId %>">
-            <input type="hidden" name="total" value="<%= total %>">
-            <input type="hidden" name="order_id" value="<%= orderId %>">
-            <input type="hidden" name="key_id" value="<%= key_id %>">
-            <input type="hidden" name="order" value="<%= JSON.stringify(orders) %>">
-            <input type="hidden" name="user" value="<%= JSON.stringify(user) %>">
-            <input type="hidden" name="payment_id" id="payment_id_input">
-            <button class="btn" id="razorpay-button">Pay Now</button>
-        </form>
-    </div>
-
+          <div class="size-209 p-t-1">
+            <span class="mtext-110 cl2 totalCart" id="totalId">
+              <%= total%>
+            </span>
+          </div>
+        </div>
+        <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+          href="" id="rzp-button">Pay with Razorpay</a>
+      </div>
+</div>
     <script>
-        var options = {
-            "key": "<%= key_id %>",
-            "amount": "<%= total %>00",
-            "currency": "INR",
-            "name": "Ezshop",
-            "description": "Payment for your order",
-            "image": "/logo.png",
-            "order_id": "<%= order_id %>",
-            "handler": function (response) {
-                // Handle successful payment
-                console.log(response);
-                var paymentId = response.razorpay_payment_id;
-                document.getElementById("payment_id_input").value = response.razorpay_payment_id;
-                document.getElementById("razorpay-button").disabled = true;
-                document.getElementById("razorpay-button").innerHTML = "Processing Payment...";
-                document.forms[0].submit();
-            },
-            "prefill": {
-                "name": "<%= user.name %>",
-                "email": "<%= user.email %>",
-                "contact": "<%= user.phone %>"
-            },
-            "notes": {
-                "address": "<%= user.address %>"
-            },
-            "theme": {
-                "color": "green"
-            }
-        };
-        var rzp = new Razorpay(options);
-        rzp.on('payment.success', function (response) {
-            res.send('payment Success')
-            var payment_id = response.razorpay_payment_id;
-            $.ajax({
-                url: '/onlinePayment',
-                type: 'GET',
-                data: { payment_id: payment_id },
-                success: function (data) {
-                    // display a success message to the user
-                    alert('Payment successful!');
-                }
-            });
-        });
-
-        document.getElementById('razorpay-button').onclick = function (e) {
-            rzp.open();
-            e.preventDefault();
+      var rzp = new Razorpay({
+        key: "<%= key_id%>",
+        amount: "<%= total %>"*100,
+        currency: "INR",
+        name: "Razorpay",
+        description: "Order <%= orderId%>",
+        image: "https://example.com/your_logo.jpg",
+    
+        handler: function(response) {
+          // Handle payment success
+          console.log(response);
+          //alert("Payment Successful!");
+          window.location.href = '/orderSuccess';
+        },
+        prefill: {
+          name: "<%= user.name %>",
+          email: "<%= user.email %>"
+        },
+        notes: {
+          address: "<%= user.address %>"
         }
-    </script>
-</body>
+      });
 
-</html>
-           
+      rzp.on('payment.failed', function (response){
+        // Handle payment failure
+        console.log(response.error.code);
+        console.log(response.error.description);
+        console.log(response.error.source);
+        console.log(response.error.step);
+        console.log(response.error.reason);
+        console.log(response.error.metadata);
+        //alert("Payment Failed! Please try again.");
+        window.location.href = "/paymentFailure";
+      });
+
+      document.getElementById("rzp-button").onclick = function(e){
+        rzp.open();
+        e.preventDefault();
+      };
+    </script>
+    </section>
+  </body>
+
             

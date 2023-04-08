@@ -44,6 +44,7 @@ userRoute.post('/addCoupon',userMiddleware.isLogin,userController.addCoupon)
 userRoute.get('/checkout',userController.checkout)
 userRoute.post('/checkout',userController.storeOrder)
 userRoute.post('/razorpay',userController.razorpayCheckout)
+userRoute.get('/paymentFailure',userMiddleware.isLogin,userController.paymentFailures)
 
 
 userRoute.get('/ordersuccess',userMiddleware.isLogin,userController.loadSuccess)

@@ -2,7 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const session = require("express-session");
 require("./config/connection").connect();
-const errorHandler = require('./middleware/errorHandler')
+const errorHandler = require('./middleware/errorHandler').default
 const config = require("./config/config");
 
 const adminRoute = require("./routes/adminRoute");
